@@ -7,21 +7,18 @@
 //
 
 #import "ViewController.h"
-
-@interface ViewController ()
-
-@end
+#import "CellBox.h"
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+-(void)viewDidLoad{
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)test:(id)sender {
+    CellBox *cellBoxObj = [[CellBox alloc]init:5 sizeOfCell:CGSizeMake(100.0, 100.0) frameOfcollectionViewFrame:CGRectMake(0.0, 200, self.view.bounds.size.width, 200)];
+    [cellBoxObj setCellBackgroundImage:[UIImage imageNamed:@"apple.png"]];
+    [cellBoxObj show:self];
 }
 
 @end

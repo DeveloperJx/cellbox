@@ -7,7 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface CellBox : NSObject
+@interface CellBox : UICollectionViewController{
+                   int  cellNum;
+               UIImage *cellBackgroundImage;
+          UIBlurEffect *blurEffect;
+    UIVisualEffectView *blurView;
+                CGSize  cellSize;
+                CGRect  collectionViewFrame;
+}
+
+-(instancetype)init:(int)numOfCell sizeOfCell:(CGSize)cellsize frameOfcollectionViewFrame:(CGRect)cvcFrame;
+-(void)show:(UIViewController *)lastViewController;
+-(void)close;
+-(UIImage *)scaleToSize:(UIImage *)img size:(CGSize)size;
+-(void)setCellBackgroundImage:(UIImage *)bgImage;
 
 @end
