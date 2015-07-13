@@ -39,19 +39,20 @@
     bgImage = [self scaleToSize:bgImage size:mainScreenSize];*/
     //self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
     self.collectionView.backgroundColor = [UIColor clearColor];
-    [self.collectionView registerClass:[Cell class] forCellWithReuseIdentifier:@"MY_CELL"];
+    cellID = [cellDataSourcedDelegate registerCellClassForCllectionView:self.collectionView];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section{
     return cellNum;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    Cell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"MY_CELL" forIndexPath:indexPath];
-    cell.label.text = [NSString stringWithFormat:@"%ld",(long)indexPath.item];
-    UICollectionViewCell *cellTemp = [cell setContentViewBackground:cellBackgroundImage];
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewCell *cell = [cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID];
+//    [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_CELL" forIndexPath:indexPath];
+//    cell.label.text = [NSString stringWithFormat:@"%ld",(long)indexPath.item];
+//    UICollectionViewCell *cellTemp = [cell setContentViewBackground:cellBackgroundImage];
 //    NSLog(@"%@",cell.label.text);
-    return cellTemp;
+    return cell;
 }
  
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -100,10 +101,6 @@
 
 -(void)setCellBackgroundImage:(UIImage *)bgImage{
     cellBackgroundImage = bgImage;
-}
-
--(void)setCellSize:(CGRect)cellsize{
-    
 }
 
 -(UIImage *)makeAImage:(UIColor *)color size:(CGRect)rect{
