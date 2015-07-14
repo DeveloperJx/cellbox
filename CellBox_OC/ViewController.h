@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "CellBox.h"
 
-@interface ViewController : UIViewController <CellBoxDataSource>
+@interface ViewController : UIViewController <CellBoxDataSource>{
+//    CellBox *cellBoxObj;
+}
+
+@property(nonatomic,readwrite)CellBox *cellBoxObj;
 
 @end
 

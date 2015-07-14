@@ -1,6 +1,18 @@
 #import <UIKit/UIKit.h>
 
-@interface LineLayout : UICollectionViewFlowLayout
+@protocol LineLayoutDelegate <NSObject>
+
+@optional
+
+- (void)slideStopAtItem:(id)collectionViewCellItem;
+
+@end
+
+@interface LineLayout : UICollectionViewFlowLayout{
+    
+}
+
+@property(nonatomic, retain) id<LineLayoutDelegate> lineLayoutDelegate;
 
 -(id)init:(CGSize)cellSize;
 

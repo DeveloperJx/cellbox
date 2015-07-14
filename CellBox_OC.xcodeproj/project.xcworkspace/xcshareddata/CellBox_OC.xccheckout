@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>274B7C2B-9DC6-4E7B-A548-EE21EF3760CB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CellBox_OC</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>DED98B196ADE91167D7D0439A82E0B7CE1CDC2C3</key>
+		<string>https://github.com/DeveloperJx/cellbox.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CellBox_OC.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>DED98B196ADE91167D7D0439A82E0B7CE1CDC2C3</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/DeveloperJx/cellbox.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DED98B196ADE91167D7D0439A82E0B7CE1CDC2C3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DED98B196ADE91167D7D0439A82E0B7CE1CDC2C3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CellBox_OC</string>
+		</dict>
+	</array>
+</dict>
+</plist>

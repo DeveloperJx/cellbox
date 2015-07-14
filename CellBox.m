@@ -24,22 +24,8 @@
 }
 
 -(void)viewDidLoad{
-//    UIImage *bgImage = [UIImage imageNamed:@"backGround.jpeg"];
-    /*if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.extendedLayoutIncludesOpaqueBars = NO;
-        self.modalPresentationCapturesStatusBarAppearance = NO;
-    }*/
-//    self.extendedLayoutIncludesOpaqueBars = NO;
-//    self.edgesForExtendedLayout = UIRectEdgeBottom | UIRectEdgeLeft | UIRectEdgeRight;
-//    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:bgImage];
-    //self.view.backgroundColor = [UIColor colorWithRed:255 green:0 blue:0 alpha:0.7];
-    /*CGSize mainScreenSize = [UIScreen mainScreen].bounds.size;
-    mainScreenSize.height = mainScreenSize.height - 20;
-    bgImage = [self scaleToSize:bgImage size:mainScreenSize];*/
-    //self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
     self.collectionView.backgroundColor = [UIColor clearColor];
-    cellID = [cellDataSourcedDelegate registerCellClassForCllectionView:self.collectionView];
+    cellID = [_cellDataSourcedDelegate registerCellClassForCllectionView:self.collectionView];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section{
@@ -47,11 +33,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell *cell = [cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID];
-//    [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_CELL" forIndexPath:indexPath];
-//    cell.label.text = [NSString stringWithFormat:@"%ld",(long)indexPath.item];
-//    UICollectionViewCell *cellTemp = [cell setContentViewBackground:cellBackgroundImage];
-//    NSLog(@"%@",cell.label.text);
+    UICollectionViewCell *cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID];
     return cell;
 }
  
@@ -74,10 +56,6 @@
 }
 
 -(void)show:(UIViewController *)lastViewController{
-    // UIApplication.sharedApplication().keyWindow?.subviews.first as UIView?
-    // UIView *superView = [[[UIApplication sharedApplication]keyWindow]subviews].firstObject;
-    // UIView *contentView = [[UIView alloc]initWithFrame:superView.bounds];
-    //contentView = cellController.view;
     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     blurView = [[UIVisualEffectView alloc]initWithEffect:blurEffect];
     blurView.alpha = 0.8;
@@ -87,23 +65,26 @@
     [lastViewController.view addSubview:blurView];
     [lastViewController.view addSubview:self.view];
     [lastViewController addChildViewController:self];
-//    self.modalPresentationStyle = UIModalTransitionStyleCoverVertical;
-//    [lastViewController presentViewController:self animated:YES completion:Nil];
-//    [[UIApplication sharedApplication]keyWindow].rootViewController = self;
 }
 
--(void)close{
-    [self.collectionView removeFromSuperview];
+- (void)close{
+    //[self.collectionView removeFromSuperview];
     [blurView removeFromSuperview];
     [self.view removeFromSuperview];
     [self removeFromParentViewController];
+    @try {
+        [_cellDataSourcedDelegate collectionViewColsed];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Delegate not work able");
+    }
 }
 
 -(void)setCellBackgroundImage:(UIImage *)bgImage{
     cellBackgroundImage = bgImage;
 }
 
--(UIImage *)makeAImage:(UIColor *)color size:(CGRect)rect{
+- (UIImage *)makeAImage:(UIColor *)color size:(CGRect)rect{
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [color CGColor]);
@@ -113,12 +94,9 @@
     return img;
 }
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    Cell *selectedCell = (Cell *)[collectionView cellForItemAtIndexPath:indexPath];
-    [selectedCell setContentViewBackground:[self makeAImage:[UIColor whiteColor] size:CGRectMake(0, 0, 300, 300)]];
-    NSLog(@"%ld",(long)indexPath.item);
-    if ((long)indexPath.item == 0) {
-        [self close];
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (_cellDataSourcedDelegate) {
+        [_cellDataSourcedDelegate collectionView:self didSelectItemAtIndexPath:indexPath];
     }
 }
 
