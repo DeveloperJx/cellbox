@@ -26,19 +26,9 @@
                                     <action selector="test:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v3b-gj-u0F"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghu-Rx-cZv">
-                                <rect key="frame" x="38" y="20" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="close:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ccq-mT-ROW"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ghu-Rx-cZv" firstAttribute="leading" secondItem="IoY-oW-DFR" secondAttribute="trailing" constant="8" id="7R6-ag-4JQ"/>
                             <constraint firstItem="IoY-oW-DFR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="F9d-sM-yUO"/>
                             <constraint firstItem="Sio-20-G6B" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Gp5-HK-e8H"/>
                             <constraint firstItem="Sio-20-G6B" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="IOu-Un-Qj7"/>
@@ -47,7 +37,6 @@
                             <constraint firstItem="IoY-oW-DFR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Vcg-84-kWe"/>
                             <constraint firstItem="IoY-oW-DFR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="eRX-ia-wnv"/>
                             <constraint firstItem="Sio-20-G6B" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ejQ-DG-XSv"/>
-                            <constraint firstItem="ghu-Rx-cZv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="kpn-IN-fGN"/>
                             <constraint firstItem="IoY-oW-DFR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="lao-8F-y30"/>
                             <constraint firstAttribute="trailing" secondItem="Sio-20-G6B" secondAttribute="trailing" id="oTD-tJ-1el"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Sio-20-G6B" secondAttribute="bottom" id="prr-2z-E7h"/>
