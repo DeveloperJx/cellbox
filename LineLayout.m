@@ -6,7 +6,7 @@
 #define ITEM_SIZE_witdh 200.0
 #define ITEM_SIZE_height 200.0
 #define ACTIVE_DISTANCE 200
-#define ZOOM_FACTOR 0.4
+#define ZOOM_FACTOR 0.6
 
 @implementation LineLayout
 
@@ -16,9 +16,9 @@
         self.itemSize = cellSize;
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         //  确定了缩进，此处为上方、下方各缩进200
-        self.sectionInset = UIEdgeInsetsMake(cellSize.height, ITEM_SIZE_witdh/2, cellSize.height, ITEM_SIZE_witdh/2);
+        self.sectionInset = UIEdgeInsetsMake(cellSize.height, cellSize.width * 3/2, cellSize.height, cellSize.width * 3/2);
         //  每个item在水平方向的最小间距
-        self.minimumLineSpacing = ITEM_SIZE_witdh/4;
+        self.minimumLineSpacing = cellSize.width/2;
     }
     return self;
 }
@@ -49,11 +49,11 @@
 
 //  自动对齐到网格
 - (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity{
-    //  proposedContentOffset是没有对齐到网格时本来应该停下来的位置
+    //  proposedContentOffset是没有对齐到网格时本来应该停下来的位置
     CGFloat offsetAdjustment = MAXFLOAT;
-    CGFloat horizontalCenter = proposedContentOffset.x + (CGRectGetWidth(self.collectionView.bounds) / 2.0);
+    CGFloat horizontalCenter = proposedContentOffset.x / 2 + (CGRectGetWidth(self.collectionView.bounds) / 2.0);
     //  当前显示的区域
-    CGRect targetRect = CGRectMake(proposedContentOffset.x, 0.0, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
+    CGRect targetRect = CGRectMake(proposedContentOffset.x, proposedContentOffset.y, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
     //  取当前显示的item
     NSArray* array = [super layoutAttributesForElementsInRect:targetRect];
     //  对当前屏幕中的UICollectionViewLayoutAttributes逐个与屏幕中心进行比较，找出最接近中心的一个

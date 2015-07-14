@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LineLayout.m"
-            timestampString = "458531234.720171"
+            timestampString = "458556289.332489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "-targetContentOffsetForProposedContentOffset:withScrollingVelocity:"
             landmarkType = "5">
          </BreakpointContent>
