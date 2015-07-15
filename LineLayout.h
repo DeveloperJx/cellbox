@@ -9,7 +9,8 @@
 @end
 
 @interface LineLayout : UICollectionViewFlowLayout{
-    
+    CGSize sizeOfCell;
+    BOOL firstLayout;
 }
 
 @property(nonatomic, retain) id<LineLayoutDelegate> lineLayoutDelegate;

@@ -14,6 +14,8 @@
     self = [super init];
     if (self) {
         self.itemSize = cellSize;
+        sizeOfCell = cellSize;
+        firstLayout = YES;
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         //  确定了缩进，此处为上方、下方各缩进200
         self.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
@@ -31,6 +33,10 @@
 -(NSArray*)layoutAttributesForElementsInRect:(CGRect)rect{
     NSArray* array = [super layoutAttributesForElementsInRect:rect];
     CGRect visibleRect;
+    if (firstLayout) {
+        [self.collectionView setContentOffset:CGPointMake(sizeOfCell.width + 10, 0) animated:NO];
+        firstLayout = !firstLayout;
+    }
     visibleRect.origin = self.collectionView.contentOffset;
     visibleRect.size = self.collectionView.bounds.size;
     for (UICollectionViewLayoutAttributes* attributes in array) {
@@ -62,7 +68,7 @@
         if (ABS(itemHorizontalCenter - horizontalCenter) < ABS(offsetAdjustment)) {
             offsetAdjustment = itemHorizontalCenter - horizontalCenter;
         }
-    }    
+    }
     return CGPointMake(proposedContentOffset.x + offsetAdjustment, proposedContentOffset.y);
 }
 

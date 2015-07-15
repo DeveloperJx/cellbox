@@ -24,6 +24,8 @@
 }
 
 -(void)viewDidLoad{
+    self.collectionView.showsHorizontalScrollIndicator = NO;
+    self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.backgroundColor = [UIColor clearColor];
     cellID = [_cellDataSourcedDelegate registerCellClassForCllectionView:self.collectionView];
 }
