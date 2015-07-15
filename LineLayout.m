@@ -6,7 +6,7 @@
 #define ITEM_SIZE_witdh 200.0
 #define ITEM_SIZE_height 200.0
 #define ACTIVE_DISTANCE 200
-#define ZOOM_FACTOR 0.6
+#define ZOOM_FACTOR 0
 
 @implementation LineLayout
 
@@ -16,9 +16,9 @@
         self.itemSize = cellSize;
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         //  确定了缩进，此处为上方、下方各缩进200
-        self.sectionInset = UIEdgeInsetsMake(cellSize.height, cellSize.width * 3/2, cellSize.height, cellSize.width * 3/2);
+        self.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
         //  每个item在水平方向的最小间距
-        self.minimumLineSpacing = cellSize.width/2;
+        self.minimumLineSpacing = 10;
     }
     return self;
 }

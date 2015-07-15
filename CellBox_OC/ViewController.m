@@ -19,7 +19,7 @@
 
 - (IBAction)test:(id)sender {
     if (cellBoxObj == nil) {
-        [self setCellBoxObj: [[CellBox alloc]init:5 sizeOfCell:CGSizeMake(100.0, 100.0) frameOfcollectionViewFrame:CGRectMake(0.0, 200, self.view.bounds.size.width, 200)]];
+        [self setCellBoxObj: [[CellBox alloc]init:3 sizeOfCell:CGSizeMake(self.view.bounds.size.width - 20, 100.0) frameOfcollectionViewFrame:CGRectMake(0.0, 200, self.view.bounds.size.width, 120)]];
         cellBoxObj.cellDataSourcedDelegate = self;
         [cellBoxObj setCellBackgroundImage:[UIImage imageNamed:@"apple.png"]];
         [cellBoxObj show:self];
