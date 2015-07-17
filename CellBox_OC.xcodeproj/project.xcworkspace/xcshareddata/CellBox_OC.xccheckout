@@ -12,6 +12,8 @@
 	<dict>
 		<key>DED98B196ADE91167D7D0439A82E0B7CE1CDC2C3</key>
 		<string>https://github.com/DeveloperJx/cellbox.git</string>
+		<key>F0F422B27FCCFE80BFBF6C504552EC32F9350373</key>
+		<string>https://github.com/DeveloperJx/test.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>CellBox_OC.xcodeproj</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>DED98B196ADE91167D7D0439A82E0B7CE1CDC2C3</key>
 		<string>../..</string>
+		<key>F0F422B27FCCFE80BFBF6C504552EC32F9350373</key>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/DeveloperJx/cellbox.git</string>
@@ -28,6 +32,14 @@
 	<string>DED98B196ADE91167D7D0439A82E0B7CE1CDC2C3</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F0F422B27FCCFE80BFBF6C504552EC32F9350373</string>
+			<key>IDESourceControlWCCName</key>
+			<string></string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

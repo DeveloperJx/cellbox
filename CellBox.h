@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#include "LineLayout.h"
 
 @protocol CellBoxDataSource <NSObject>
 
 @required
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cV cellForItemAtIndexPath:(NSIndexPath *)indexPath cellWithIdentifier:(NSString *)cellID;
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cV cellForItemAtIndexPath:(NSIndexPath *)indexPath cellWithIdentifier:(NSString *)cellID cellWantsIndex:(int)cellwWI;
 - (NSString *)registerCellClassForCllectionView:(UICollectionView *) collectionView;
 
 @optional
@@ -24,23 +25,25 @@
 
 @end
 
-@interface CellBox : UICollectionViewController {
+@interface CellBox : UICollectionViewController <LineLayoutDelegate> {
                    int  cellNum;
+                   int  cellNow;
               NSString *cellID;
-               UIImage *cellBackgroundImage;
           UIBlurEffect *blurEffect;
     UIVisualEffectView *blurView;
                 CGSize  cellSize;
                 CGRect  collectionViewFrame;
+               NSArray *dataArray;
+                  BOOL  isNeedToRefresh;
+                  BOOL  isSlideDirectionLeft;
 }
 
 @property(nonatomic, weak) id<CellBoxDataSource> cellDataSourcedDelegate;
 
-- (instancetype)init:(int)numOfCell sizeOfCell:(CGSize)cellsize frameOfcollectionViewFrame:(CGRect)cvcFrame;
+- (instancetype)init: (CGRect)cvcFrame numOfCell: (int) cellsNum;
 - (void)show:(UIViewController *)lastViewController;
 - (void)close;
 - (UIImage *)scaleToSize:(UIImage *)img size:(CGSize)size;
-- (void)setCellBackgroundImage:(UIImage *)bgImage;
 - (UIImage *)makeAImage:(UIColor *)color size:(CGRect)rect;
 
 @end

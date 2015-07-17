@@ -12,30 +12,129 @@
 #import "LineLayout.h"
 #import "Cell.h"
 
+#define EdgeInsets 24.0
+
 @implementation CellBox
 
--(instancetype)init:(int)numOfCell sizeOfCell:(CGSize)cellsize frameOfcollectionViewFrame:(CGRect)cvcFrame{
-    cellNum = numOfCell;
+- (instancetype)init: (CGRect)cvcFrame numOfCell: (int) cellsNum{
+    cellNum = cellsNum;
+    cellNow = 1;
+    cellSize = CGSizeMake(cvcFrame.size.width - EdgeInsets * 2, cvcFrame.size.height - 20);
     collectionViewFrame = cvcFrame;
-    cellBackgroundImage = [self makeAImage:[UIColor yellowColor] size:CGRectMake(0, 0, 300, 300)];
-    LineLayout *lineLayout = [[LineLayout alloc] init:cellsize];
+    LineLayout *lineLayout = [[LineLayout alloc] init:cellSize withMinimumLineSpacing:12 andMainCellLineSpacing:24];
+    lineLayout.lineLayoutDelegate = self;
     self = [super initWithCollectionViewLayout:lineLayout];
     return self;
 }
 
 -(void)viewDidLoad{
+    self.collectionView.decelerationRate = 0.1;
     self.collectionView.showsHorizontalScrollIndicator = NO;
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.backgroundColor = [UIColor clearColor];
     cellID = [_cellDataSourcedDelegate registerCellClassForCllectionView:self.collectionView];
+    isNeedToRefresh = NO;
+    isSlideDirectionLeft = NO;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section{
-    return cellNum;
+    return 5;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell *cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID];
+    UICollectionViewCell *cell;
+    if (cellNow == 1 && cellNow != cellNum) {
+        switch (indexPath.item) {
+            case 0:
+                if (_cellDataSourcedDelegate) {
+                     cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID cellWantsIndex:cellNum];
+                }
+                break;
+            case 1:
+                if (_cellDataSourcedDelegate) {
+                    cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID cellWantsIndex:cellNum];
+                }
+                break;
+            case 2:
+                if (_cellDataSourcedDelegate) {
+                    cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID cellWantsIndex:1];
+                }
+                break;
+            case 3:
+                if (_cellDataSourcedDelegate) {
+                    cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID cellWantsIndex:2];
+                }
+                break;
+            case 4:
+                if (_cellDataSourcedDelegate) {
+                    cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID cellWantsIndex:2];
+                }
+                break;
+            default:
+                break;
+        }
+    }else if(cellNow == cellNum){
+        switch (indexPath.item) {
+            case 0:
+                if (_cellDataSourcedDelegate) {
+                    cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID cellWantsIndex:cellNow - 1];
+                }
+                break;
+            case 1:
+                if (_cellDataSourcedDelegate) {
+                    cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID cellWantsIndex:cellNow - 1];
+                }
+                break;
+            case 2:
+                if (_cellDataSourcedDelegate) {
+                    cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID cellWantsIndex:cellNow];
+                }
+                break;
+            case 3:
+                if (_cellDataSourcedDelegate) {
+                    cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID cellWantsIndex:1];
+                }
+                break;
+            case 4:
+                if (_cellDataSourcedDelegate) {
+                    cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID cellWantsIndex:1];
+                }
+                break;
+            default:
+                break;
+        }
+    }else{
+        switch (indexPath.item) {
+            case 0:
+                if (_cellDataSourcedDelegate) {
+                    cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID cellWantsIndex:cellNow - 1];
+                }
+                break;
+            case 1:
+                if (_cellDataSourcedDelegate) {
+                    cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID cellWantsIndex:cellNow - 1];
+                }
+                break;
+            case 2:
+                if (_cellDataSourcedDelegate) {
+                    cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID cellWantsIndex:cellNow];
+                }
+                break;
+            case 3:
+                if (_cellDataSourcedDelegate) {
+                    cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID cellWantsIndex:cellNow + 1];
+                }
+                break;
+            case 4:
+                if (_cellDataSourcedDelegate) {
+                    cell = [_cellDataSourcedDelegate collectionView:collectionView cellForItemAtIndexPath:indexPath cellWithIdentifier:cellID cellWantsIndex:cellNow + 1];
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    
     return cell;
 }
  
@@ -82,9 +181,9 @@
     }
 }
 
--(void)setCellBackgroundImage:(UIImage *)bgImage{
-    cellBackgroundImage = bgImage;
-}
+//-(void)setCellBackgroundImage:(UIImage *)bgImage{
+//    cellBackgroundImage = bgImage;
+//}
 
 - (UIImage *)makeAImage:(UIColor *)color size:(CGRect)rect{
     UIGraphicsBeginImageContext(rect.size);
@@ -100,6 +199,39 @@
     if (_cellDataSourcedDelegate) {
         [_cellDataSourcedDelegate collectionView:self didSelectItemAtIndexPath:indexPath];
     }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    if (isNeedToRefresh) {
+        if (isSlideDirectionLeft) {
+//            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
+//            Cell *celltemp = (Cell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+//            celltemp.label.text = @"Left";
+            if (cellNow != 1) {
+                cellNow--;
+            }else{
+                cellNow = cellNum;
+            }
+        }else{
+            if (cellNow != cellNum) {
+                cellNow++;
+            }else{
+                cellNow = 1;
+            }
+        }
+        [self.collectionView reloadData];
+        [self.collectionView setContentOffset: CGPointMake(10 + (collectionViewFrame.size.width - 48) * 2 + 12 * 2 - 24, 0) animated:NO];
+    }
+    NSLog(@"stop");
+}
+
+-(void)isSlideToLeft:(BOOL)slideDirectionIsLeft isNeedBeRefresh:(BOOL)isNeedToBeRefresh{
+    isSlideDirectionLeft = slideDirectionIsLeft;
+    isNeedToRefresh = isNeedToBeRefresh;
+}
+
+-(void)isNeedToBeRefresh:(BOOL)isNeedToBeRefresh{
+    isNeedToRefresh = isNeedToBeRefresh;
 }
 
 @end
