@@ -189,10 +189,6 @@
     }
 }
 
-//-(void)setCellBackgroundImage:(UIImage *)bgImage{
-//    cellBackgroundImage = bgImage;
-//}
-
 - (UIImage *)makeAImage:(UIColor *)color size:(CGRect)rect{
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -215,26 +211,27 @@
     scrollView.decelerationRate = 0.1;
 }
 
-
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     if (decelerate && isThouch)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             printf("STOP IT!!\n");
             [scrollView setContentOffset:scrollView.contentOffset animated:NO];
-        }); 
+        });
+        isThouch = NO;
+        CGPoint offset = [self targetContentOffsetForProposedContentOffset:self.collectionView.contentOffset];
+        NSLog(@"%f,%f",offset.x,self.collectionView.contentOffset.x);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            printf("STOP IT!!\n");
+            ///////////////
+            [scrollView setContentOffset:offset animated:YES];
+        });
+    }else if (decelerate){
+        
     }
-    isThouch = NO;
-    CGPoint offset = [self targetContentOffsetForProposedContentOffset:self.collectionView.contentOffset];
-    NSLog(@"%f,%f",offset.x,self.collectionView.contentOffset.x);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        printf("STOP IT!!\n");
-        ///////////////
-        [scrollView setContentOffset:offset animated:YES];
-    });
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
     [self reloadCells];
     if (self.cellDataSourcedDelegate && stateOfSlide != NOT_SLIDE) {
         @try {
@@ -252,8 +249,8 @@
 
 - (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset{
     CGPoint pointAfterSlide;
-    CGFloat rightSlideThreshold = 10 + cellSize.width * 2 + minimumLineSpacing * 2 - mainCellLineSpacing + cellSize.width / 2;
-    CGFloat leftSlideThreshold = 10 + cellSize.width + minimumLineSpacing + cellSize.width + minimumLineSpacing - cellSize.width / 2;
+    CGFloat rightSlideThreshold = 10 + cellSize.width * 2 + minimumLineSpacing * 2 - mainCellLineSpacing + cellSize.width / 4;
+    CGFloat leftSlideThreshold = 10 + cellSize.width + minimumLineSpacing + cellSize.width + minimumLineSpacing - cellSize.width / 4;
     if (proposedContentOffset.x >= rightSlideThreshold) {
         stateOfSlide = SLIDE_RIGHT;
         if (cellNow != cellNum) {
