@@ -35,6 +35,9 @@
     self.collectionView.backgroundColor = [UIColor clearColor];
     cellID = [_cellDataSourcedDelegate registerCellClassForCllectionView:self.collectionView];
     isThouch = NO;
+    if (cellNum == 1) {
+        [self.collectionView setScrollEnabled:NO];
+    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section{
@@ -134,7 +137,11 @@
                 break;
         }
     }
-    
+    if (cellNum == 1) {
+        if (indexPath.item != 2) {
+            cell.hidden = YES;
+        }
+    }
     return cell;
 }
  
@@ -229,7 +236,6 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     [self reloadCells];
     if (self.cellDataSourcedDelegate) {
-        //ollectionView:self didSlideAtItem:self.collectionView cellForItemAtIndexPath:[[NSIndexPath alloc]initWithIndexes:cellNow length:0]
         @try {
             [self.cellDataSourcedDelegate collectionView:self didSlideAtItem:[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]]];
         }
