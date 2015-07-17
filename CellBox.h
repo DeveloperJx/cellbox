@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#define NOT_SLIDE   1
+#define SLIDE_LEFT  0
+#define SLIDE_RIGHT 2
+
 @protocol CellBoxDataSource <NSObject>
 
 @required
@@ -27,6 +31,7 @@
 @interface CellBox : UICollectionViewController {
                    int  cellNum;
                    int  cellNow;
+                   int  stateOfSlide;
               NSString *cellID;
           UIBlurEffect *blurEffect;
     UIVisualEffectView *blurView;

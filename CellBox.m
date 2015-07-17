@@ -35,6 +35,7 @@
     self.collectionView.backgroundColor = [UIColor clearColor];
     cellID = [_cellDataSourcedDelegate registerCellClassForCllectionView:self.collectionView];
     isThouch = NO;
+    stateOfSlide = NOT_SLIDE;
     if (cellNum == 1) {
         [self.collectionView setScrollEnabled:NO];
     }
@@ -235,9 +236,13 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     [self reloadCells];
-    if (self.cellDataSourcedDelegate) {
+    if (self.cellDataSourcedDelegate && stateOfSlide != NOT_SLIDE) {
         @try {
-            [self.cellDataSourcedDelegate collectionView:self didSlideAtItem:[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]]];
+            if (stateOfSlide == SLIDE_LEFT) {
+                [self.cellDataSourcedDelegate collectionView:self didSlideAtItem:[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]]];
+            }else{
+                [self.cellDataSourcedDelegate collectionView:self didSlideAtItem:[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0]]];
+            }
         }
         @catch (NSException *exception) {
             
@@ -250,6 +255,7 @@
     CGFloat rightSlideThreshold = 10 + cellSize.width * 2 + minimumLineSpacing * 2 - mainCellLineSpacing + cellSize.width / 2;
     CGFloat leftSlideThreshold = 10 + cellSize.width + minimumLineSpacing + cellSize.width + minimumLineSpacing - cellSize.width / 2;
     if (proposedContentOffset.x >= rightSlideThreshold) {
+        stateOfSlide = SLIDE_RIGHT;
         if (cellNow != cellNum) {
             cellNow++;
         }else{
@@ -258,6 +264,7 @@
         pointAfterSlide = CGPointMake(10 + cellSize.width * 3 + minimumLineSpacing * 3 - mainCellLineSpacing, proposedContentOffset.y);
     }else{
         if (proposedContentOffset.x <= leftSlideThreshold) {
+            stateOfSlide = SLIDE_LEFT;
             if (cellNow != 1) {
                 cellNow--;
             }else{
@@ -266,6 +273,7 @@
             pointAfterSlide = CGPointMake(10 + cellSize.width + minimumLineSpacing - mainCellLineSpacing, proposedContentOffset.y);
         }else{
             pointAfterSlide = CGPointMake(10 + cellSize.width * 2 + minimumLineSpacing * 2 - mainCellLineSpacing, proposedContentOffset.y);
+            stateOfSlide = NOT_SLIDE;
         }
     }
     return pointAfterSlide;

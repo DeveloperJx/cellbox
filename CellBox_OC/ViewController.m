@@ -19,7 +19,7 @@
 
 - (IBAction)test:(id)sender {
     if (cellBoxObj == nil) {
-        [self setCellBoxObj: [[CellBox alloc]init: CGRectMake(0.0, self.view.bounds.size.height / 2 - 50, self.view.bounds.size.width, 101) numOfCell:1]];
+        [self setCellBoxObj: [[CellBox alloc]init: CGRectMake(0.0, self.view.bounds.size.height / 2 - 50, self.view.bounds.size.width, 101) numOfCell:10]];
         cellBoxObj.cellDataSourcedDelegate = self;
         [cellBoxObj show:self];
     }
