@@ -10,8 +10,6 @@
 
 @implementation LineLayout
 
-@synthesize lineLayoutDelegate;
-
 - (id)init:(CGSize)cellSize withMinimumLineSpacing:(CGFloat) minimumLS andMainCellLineSpacing:(CGFloat) mainCellLS{
     self = [super init];
     if (self) {
@@ -75,8 +73,8 @@
     }*/
     CGPoint pointAfterSlide;
     CGFloat rightSlideThreshold = 10 + sizeOfCell.width * 2 + minimumLineSpacing * 2 - mainCellLineSpacing + sizeOfCell.width / 2;
-    CGFloat rightSlideDoubleItemThreshold = 10 + sizeOfCell.width * 3 + minimumLineSpacing * 3 - mainCellLineSpacing + sizeOfCell.width / 2;
-    CGFloat leftSlideDoubleItemThreshold = 10 + sizeOfCell.width / 2;
+//    CGFloat rightSlideDoubleItemThreshold = 10 + sizeOfCell.width * 3 + minimumLineSpacing * 3 - mainCellLineSpacing + sizeOfCell.width / 2;
+//    CGFloat leftSlideDoubleItemThreshold = 10 + sizeOfCell.width / 2;
     CGFloat leftSlideThreshold = 10 + sizeOfCell.width + minimumLineSpacing + sizeOfCell.width + minimumLineSpacing - sizeOfCell.width / 2;
     if (proposedContentOffset.x >= rightSlideThreshold) {
 //        if (proposedContentOffset.x > rightSlideDoubleItemThreshold) {
@@ -91,9 +89,9 @@
 //            }
 //        }
         pointAfterSlide = CGPointMake(10 + sizeOfCell.width * 3 + minimumLineSpacing * 3 - mainCellLineSpacing, proposedContentOffset.y);
-        if (lineLayoutDelegate) {
-            [lineLayoutDelegate isSlideToLeft:NO isNeedBeRefresh:YES];
-        }
+//        if (lineLayoutDelegate) {
+//            [lineLayoutDelegate isSlideToLeft:NO isNeedBeRefresh:YES];
+//        }
     }else{
         if (proposedContentOffset.x <= leftSlideThreshold) {
 //            if (proposedContentOffset.x <= leftSlideDoubleItemThreshold) {
@@ -108,14 +106,14 @@
 //                }
 //            }
             pointAfterSlide = CGPointMake(10 + sizeOfCell.width + minimumLineSpacing - mainCellLineSpacing, proposedContentOffset.y);
-            if (lineLayoutDelegate) {
-                [lineLayoutDelegate isSlideToLeft:YES isNeedBeRefresh:YES];
-            }
+//            if (lineLayoutDelegate) {
+//                [lineLayoutDelegate isSlideToLeft:YES isNeedBeRefresh:YES];
+//            }
         }else{
             pointAfterSlide = CGPointMake(10 + sizeOfCell.width * 2 + minimumLineSpacing * 2 - mainCellLineSpacing, proposedContentOffset.y);
-            if (lineLayoutDelegate) {
-                [lineLayoutDelegate isNeedToBeRefresh:NO];
-            }
+//            if (lineLayoutDelegate) {
+//                [lineLayoutDelegate isNeedToBeRefresh:NO];
+//            }
         }
     }
     return pointAfterSlide;

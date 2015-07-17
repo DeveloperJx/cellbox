@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#include "LineLayout.h"
 
 @protocol CellBoxDataSource <NSObject>
 
@@ -25,7 +24,7 @@
 
 @end
 
-@interface CellBox : UICollectionViewController <LineLayoutDelegate> {
+@interface CellBox : UICollectionViewController {
                    int  cellNum;
                    int  cellNow;
               NSString *cellID;
@@ -34,8 +33,9 @@
                 CGSize  cellSize;
                 CGRect  collectionViewFrame;
                NSArray *dataArray;
-                  BOOL  isNeedToRefresh;
-                  BOOL  isSlideDirectionLeft;
+                  BOOL  isThouch;
+               CGFloat  minimumLineSpacing;
+               CGFloat  mainCellLineSpacing;
 }
 
 @property(nonatomic, weak) id<CellBoxDataSource> cellDataSourcedDelegate;

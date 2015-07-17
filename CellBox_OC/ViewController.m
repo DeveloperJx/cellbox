@@ -47,6 +47,11 @@
    }
 }
 
+-(void)collectionView:(UICollectionViewController *)cVC didSlideAtItem:(UICollectionViewCell *)cellItem{
+    Cell *selectedCell = (Cell *)cellItem;
+    NSLog(@"%@",selectedCell.label.text);
+}
+
 -(void)collectionViewColsed{
     if (cellBoxObj != nil) {
         cellBoxObj.cellDataSourcedDelegate = nil;

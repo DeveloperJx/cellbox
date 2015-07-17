@@ -21,8 +21,9 @@
     cellNow = 1;
     cellSize = CGSizeMake(cvcFrame.size.width - EdgeInsets * 2, cvcFrame.size.height - 20);
     collectionViewFrame = cvcFrame;
+    minimumLineSpacing = 12;
+    mainCellLineSpacing = 24;
     LineLayout *lineLayout = [[LineLayout alloc] init:cellSize withMinimumLineSpacing:12 andMainCellLineSpacing:24];
-    lineLayout.lineLayoutDelegate = self;
     self = [super initWithCollectionViewLayout:lineLayout];
     return self;
 }
@@ -33,8 +34,7 @@
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.backgroundColor = [UIColor clearColor];
     cellID = [_cellDataSourcedDelegate registerCellClassForCllectionView:self.collectionView];
-    isNeedToRefresh = NO;
-    isSlideDirectionLeft = NO;
+    isThouch = NO;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section{
@@ -157,13 +157,13 @@
 }
 
 -(void)show:(UIViewController *)lastViewController{
-    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    blurView = [[UIVisualEffectView alloc]initWithEffect:blurEffect];
-    blurView.alpha = 0.8;
-    blurView.frame = CGRectMake(0, 20, lastViewController.view.bounds.size.width, lastViewController.view.bounds.size.height);
+//    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    blurView = [[UIVisualEffectView alloc]initWithEffect:blurEffect];
+//    blurView.alpha = 0.8;
+//    blurView.frame = CGRectMake(0, 20, lastViewController.view.bounds.size.width, lastViewController.view.bounds.size.height);
     self.view.frame = collectionViewFrame;
-    blurView.frame = collectionViewFrame;
-    [lastViewController.view addSubview:blurView];
+//    blurView.frame = collectionViewFrame;
+//    [lastViewController.view addSubview:blurView];
     [lastViewController.view addSubview:self.view];
     [lastViewController addChildViewController:self];
 }
@@ -203,88 +203,73 @@
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    isNeedToRefresh = NO;
+    isThouch = YES;
+    scrollView.decelerationRate = 0.1;
 }
 
--(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
-    if (isNeedToRefresh) {
-        isNeedToRefresh = NO;
-        if (isSlideDirectionLeft) {
-            //            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
-            //            Cell *celltemp = (Cell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-            //            celltemp.label.text = @"Left";
-            if (cellNow != 1) {
-                cellNow--;
-            }else{
-                cellNow = cellNum;
-            }
-        }else{
-            if (cellNow != cellNum) {
-                cellNow++;
-            }else{
-                cellNow = 1;
-            }
-        }
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (decelerate && isThouch)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            printf("STOP IT!!\n");
+            [scrollView setContentOffset:scrollView.contentOffset animated:NO];
+        }); 
     }
-    NSLog(@"stop");
-    //[self.collectionView setScrollEnabled:NO];
+    isThouch = NO;
+    CGPoint offset = [self targetContentOffsetForProposedContentOffset:self.collectionView.contentOffset];
+    NSLog(@"%f,%f",offset.x,self.collectionView.contentOffset.x);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        printf("STOP IT!!\n");
+        ///////////////
+        [scrollView setContentOffset:offset animated:YES];
+    });
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    [self.collectionView reloadData];
-    [self.collectionView setScrollEnabled:YES];
-    [self.collectionView setContentOffset: CGPointMake(10 + (collectionViewFrame.size.width - 48) * 2 + 12 * 2 - 24, 0) animated:NO];
-//    if (isNeedToRefresh) {
-//        isNeedToRefresh = NO;
-//        if (isSlideDirectionLeft) {
-////            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
-////            Cell *celltemp = (Cell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-////            celltemp.label.text = @"Left";
-//            if (cellNow != 1) {
-//                cellNow--;
-//            }else{
-//                cellNow = cellNum;
-//            }
-//        }else{
-//            if (cellNow != cellNum) {
-//                cellNow++;
-//            }else{
-//                cellNow = 1;
-//            }
-//        }
-//        [self.collectionView reloadData];
-//        [self.collectionView setScrollEnabled:YES];
-//        [self.collectionView setContentOffset: CGPointMake(10 + (collectionViewFrame.size.width - 48) * 2 + 12 * 2 - 24, 0) animated:NO];
-//    }
-//    NSLog(@"stop");
-}
-
--(void)isSlideToLeft:(BOOL)slideDirectionIsLeft isNeedBeRefresh:(BOOL)isNeedToBeRefresh{
-    isSlideDirectionLeft = slideDirectionIsLeft;
-    isNeedToRefresh = isNeedToBeRefresh;
-}
-
--(void)isNeedToBeRefresh:(BOOL)isNeedToBeRefresh{
-    isNeedToRefresh = isNeedToBeRefresh;
-}
-
--(void)isSlideDouble{
-    if (isSlideDirectionLeft) {
-        //            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
-        //            Cell *celltemp = (Cell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-        //            celltemp.label.text = @"Left";
-        if (cellNow != 1) {
-            cellNow--;
-        }else{
-            cellNow = cellNum;
+    [self reloadCells];
+    if (self.cellDataSourcedDelegate) {
+        //ollectionView:self didSlideAtItem:self.collectionView cellForItemAtIndexPath:[[NSIndexPath alloc]initWithIndexes:cellNow length:0]
+        @try {
+            [self.cellDataSourcedDelegate collectionView:self didSlideAtItem:[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]]];
         }
-    }else{
+        @catch (NSException *exception) {
+            
+        }
+    }
+}
+
+- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset{
+    CGPoint pointAfterSlide;
+    CGFloat rightSlideThreshold = 10 + cellSize.width * 2 + minimumLineSpacing * 2 - mainCellLineSpacing + cellSize.width / 2;
+    CGFloat leftSlideThreshold = 10 + cellSize.width + minimumLineSpacing + cellSize.width + minimumLineSpacing - cellSize.width / 2;
+    if (proposedContentOffset.x >= rightSlideThreshold) {
         if (cellNow != cellNum) {
             cellNow++;
         }else{
             cellNow = 1;
         }
+        pointAfterSlide = CGPointMake(10 + cellSize.width * 3 + minimumLineSpacing * 3 - mainCellLineSpacing, proposedContentOffset.y);
+    }else{
+        if (proposedContentOffset.x <= leftSlideThreshold) {
+            if (cellNow != 1) {
+                cellNow--;
+            }else{
+                cellNow = cellNum;
+            }
+            pointAfterSlide = CGPointMake(10 + cellSize.width + minimumLineSpacing - mainCellLineSpacing, proposedContentOffset.y);
+        }else{
+            pointAfterSlide = CGPointMake(10 + cellSize.width * 2 + minimumLineSpacing * 2 - mainCellLineSpacing, proposedContentOffset.y);
+        }
     }
+    return pointAfterSlide;
+}
+
+- (void)reloadCells{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+        [self.collectionView setContentOffset: CGPointMake(10 + (collectionViewFrame.size.width - 48) * 2 + minimumLineSpacing * 2 - mainCellLineSpacing, 0) animated:NO];
+    });
 }
 
 @end
