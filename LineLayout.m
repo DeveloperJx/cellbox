@@ -75,14 +75,38 @@
     }*/
     CGPoint pointAfterSlide;
     CGFloat rightSlideThreshold = 10 + sizeOfCell.width * 2 + minimumLineSpacing * 2 - mainCellLineSpacing + sizeOfCell.width / 2;
+    CGFloat rightSlideDoubleItemThreshold = 10 + sizeOfCell.width * 3 + minimumLineSpacing * 3 - mainCellLineSpacing + sizeOfCell.width / 2;
+    CGFloat leftSlideDoubleItemThreshold = 10 + sizeOfCell.width / 2;
     CGFloat leftSlideThreshold = 10 + sizeOfCell.width + minimumLineSpacing + sizeOfCell.width + minimumLineSpacing - sizeOfCell.width / 2;
-    if (proposedContentOffset.x > rightSlideThreshold) {
+    if (proposedContentOffset.x >= rightSlideThreshold) {
+//        if (proposedContentOffset.x > rightSlideDoubleItemThreshold) {
+//            if (lineLayoutDelegate) {
+//                [lineLayoutDelegate isSlideToLeft:NO isNeedBeRefresh:YES];
+//                [lineLayoutDelegate isSlideDouble];
+//            }
+//        }else{
+//            pointAfterSlide = CGPointMake(10 + sizeOfCell.width * 3 + minimumLineSpacing * 3 - mainCellLineSpacing, proposedContentOffset.y);
+//            if (lineLayoutDelegate) {
+//                [lineLayoutDelegate isSlideToLeft:NO isNeedBeRefresh:YES];
+//            }
+//        }
         pointAfterSlide = CGPointMake(10 + sizeOfCell.width * 3 + minimumLineSpacing * 3 - mainCellLineSpacing, proposedContentOffset.y);
         if (lineLayoutDelegate) {
             [lineLayoutDelegate isSlideToLeft:NO isNeedBeRefresh:YES];
         }
     }else{
-        if (proposedContentOffset.x < leftSlideThreshold) {
+        if (proposedContentOffset.x <= leftSlideThreshold) {
+//            if (proposedContentOffset.x <= leftSlideDoubleItemThreshold) {
+//                if (lineLayoutDelegate) {
+//                    [lineLayoutDelegate isSlideToLeft:YES isNeedBeRefresh:YES];
+//                    [lineLayoutDelegate isSlideDouble];
+//                }
+//            }else{
+//                pointAfterSlide = CGPointMake(10 + sizeOfCell.width + minimumLineSpacing - mainCellLineSpacing, proposedContentOffset.y);
+//                if (lineLayoutDelegate) {
+//                    [lineLayoutDelegate isSlideToLeft:YES isNeedBeRefresh:YES];
+//                }
+//            }
             pointAfterSlide = CGPointMake(10 + sizeOfCell.width + minimumLineSpacing - mainCellLineSpacing, proposedContentOffset.y);
             if (lineLayoutDelegate) {
                 [lineLayoutDelegate isSlideToLeft:YES isNeedBeRefresh:YES];

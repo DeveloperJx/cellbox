@@ -6,6 +6,7 @@
 
 - (void)isSlideToLeft:(BOOL)slideDirectionIsLeft isNeedBeRefresh:(BOOL)isNeedToBeRefresh;
 - (void)isNeedToBeRefresh:(BOOL)isNeedToBeRefresh;
+- (void)isSlideDouble;
 
 @end
 

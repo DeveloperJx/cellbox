@@ -196,17 +196,23 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self.collectionView setScrollEnabled:YES];
     if (_cellDataSourcedDelegate) {
         [_cellDataSourcedDelegate collectionView:self didSelectItemAtIndexPath:indexPath];
     }
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    isNeedToRefresh = NO;
+}
+
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
     if (isNeedToRefresh) {
+        isNeedToRefresh = NO;
         if (isSlideDirectionLeft) {
-//            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
-//            Cell *celltemp = (Cell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-//            celltemp.label.text = @"Left";
+            //            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
+            //            Cell *celltemp = (Cell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+            //            celltemp.label.text = @"Left";
             if (cellNow != 1) {
                 cellNow--;
             }else{
@@ -219,10 +225,38 @@
                 cellNow = 1;
             }
         }
-        [self.collectionView reloadData];
-        [self.collectionView setContentOffset: CGPointMake(10 + (collectionViewFrame.size.width - 48) * 2 + 12 * 2 - 24, 0) animated:NO];
     }
     NSLog(@"stop");
+    //[self.collectionView setScrollEnabled:NO];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    [self.collectionView reloadData];
+    [self.collectionView setScrollEnabled:YES];
+    [self.collectionView setContentOffset: CGPointMake(10 + (collectionViewFrame.size.width - 48) * 2 + 12 * 2 - 24, 0) animated:NO];
+//    if (isNeedToRefresh) {
+//        isNeedToRefresh = NO;
+//        if (isSlideDirectionLeft) {
+////            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
+////            Cell *celltemp = (Cell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+////            celltemp.label.text = @"Left";
+//            if (cellNow != 1) {
+//                cellNow--;
+//            }else{
+//                cellNow = cellNum;
+//            }
+//        }else{
+//            if (cellNow != cellNum) {
+//                cellNow++;
+//            }else{
+//                cellNow = 1;
+//            }
+//        }
+//        [self.collectionView reloadData];
+//        [self.collectionView setScrollEnabled:YES];
+//        [self.collectionView setContentOffset: CGPointMake(10 + (collectionViewFrame.size.width - 48) * 2 + 12 * 2 - 24, 0) animated:NO];
+//    }
+//    NSLog(@"stop");
 }
 
 -(void)isSlideToLeft:(BOOL)slideDirectionIsLeft isNeedBeRefresh:(BOOL)isNeedToBeRefresh{
@@ -232,6 +266,25 @@
 
 -(void)isNeedToBeRefresh:(BOOL)isNeedToBeRefresh{
     isNeedToRefresh = isNeedToBeRefresh;
+}
+
+-(void)isSlideDouble{
+    if (isSlideDirectionLeft) {
+        //            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
+        //            Cell *celltemp = (Cell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+        //            celltemp.label.text = @"Left";
+        if (cellNow != 1) {
+            cellNow--;
+        }else{
+            cellNow = cellNum;
+        }
+    }else{
+        if (cellNow != cellNum) {
+            cellNow++;
+        }else{
+            cellNow = 1;
+        }
+    }
 }
 
 @end
