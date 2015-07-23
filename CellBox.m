@@ -204,6 +204,9 @@
     if (_cellDataSourcedDelegate) {
         [_cellDataSourcedDelegate collectionView:self didSelectItemAtIndexPath:indexPath];
     }
+    if (cellNum == 1) {
+        [self.collectionView setScrollEnabled:NO];
+    }
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{

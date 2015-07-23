@@ -19,7 +19,7 @@
 
 - (IBAction)test:(id)sender {
     if (cellBoxObj == nil) {
-        [self setCellBoxObj: [[CellBox alloc]init: CGRectMake(0.0, self.view.bounds.size.height / 2 - 50, self.view.bounds.size.width, 101) numOfCell:10]];
+        [self setCellBoxObj: [[CellBox alloc]init: CGRectMake(0.0, self.view.bounds.size.height / 2 - 50, self.view.bounds.size.width, 101) numOfCell:1]];
         cellBoxObj.cellDataSourcedDelegate = self;
         [cellBoxObj show:self];
     }
@@ -43,7 +43,7 @@
     [selectedCell setContentViewBackground: [[CellBox alloc] makeAImage:[UIColor whiteColor] size:CGRectMake(0, 0, 300, 300)]];
     NSLog(@"%@",selectedCell.label.text);
     if ([selectedCell.label.text isEqualToString:@"1"]) {
-        [(CellBox *)cVC close];
+        //[(CellBox *)cVC close];
    }
 }
 
