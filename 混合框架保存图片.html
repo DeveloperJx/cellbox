@@ -16,6 +16,12 @@
 <br>
 <button type="button" id="btn">保存图片</button>
 <br>
+<h3>开始时间</h3>
+<input type="text" name="beginDate" id="beginDate" value="2020-02-25">
+<h3>结束时间</h3>
+<input type="text" name="endDate" id="endDate" value="2020-02-25">
+<br>
+<br>
 <button type="button" id="getHealthData">获取健康数据</button>
 <script>
   var btn = document.getElementById('btn');
@@ -39,16 +45,20 @@
   var btnGetHealthData = document.getElementById('getHealthData');
   btnGetHealthData.onclick = function () {
     // alert('1234')
+    var beginDate = document.getElementById('beginDate')
+    var endDate = document.getElementById('endDate')
     YBB.hybrid.user.healthData({
       type: 'stepCount',
-      startDate: '2019-01-24', // 时间支持两种格式： yyy-MM-dd 或者 yyyy-MM-dd hh:mm:ss
-      endDate: '2019-01-20'
+      startDate: beginDate.value, // 时间支持两种格式： yyy-MM-dd 或者 yyyy-MM-dd hh:mm:ss
+      endDate: endDate.value
     }).then(function(result) {
       console.log(result.stepCount)
-      alert(result)
+      var jsonData = JSON.stringify(result)
+      alert(jsonData)
     }).catch(function (e) {
       console.log(e.message)
-      alert(e)
+      var msg = (e.message.length == 0 || e.message == nil) ? '抛出异常，异常消息为空' : e.message
+      alert(msg)
     })
   }
   
