@@ -26,8 +26,9 @@
       data: data.value,
       encode: encode
     }).then(function () {
-      console.log('保存成功')
-      alert('保存成功'）
+      var msg = '保存成功'
+      console.log(msg)
+      alert(msg）
     }).catch(function (e) {
       console.log(e.message)
       alert(e.message)
