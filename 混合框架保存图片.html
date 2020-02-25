@@ -26,12 +26,13 @@
       data: data.value,
       encode: encode
     }).then(function () {
-      var msg = "保存成功"
+      var msg = '保存成功'
       console.log(msg)
       alert(msg)
     }).catch(function (e) {
       console.log(e.message)
-      alert(e.message)
+      var msg = (e.message.length == 0 || e.message == nil) ? '抛出异常，异常消息为空' : e.message
+      alert(msg)
     })
   }
 
