@@ -19,9 +19,9 @@
 <button type="button" id="getHealthData">获取健康数据</button>
 <script>
   var btn = document.getElementById('btn');
-  var data = document.getElementById('imageContact')
-  var encode = data.value.indexOf('http') == 0 ? 'url' : 'base64'
   btn.onclick = function () {
+    var data = document.getElementById('imageContact')
+    var encode = data.value.indexOf('http') == 0 ? 'url' : 'base64'
     LocalYBB.hybridBridge.device.savePicture({
       data: data.value,
       encode: encode
