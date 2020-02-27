@@ -81,9 +81,9 @@
   var btnOpenURL = document.getElementById('openURL');
   btnOpenURL.onclick = function () {
     var data = document.getElementById('urlPath')
-    var url = null
-    var params = {'failUrl': data.value, 'package': ''}
-    YBB.hybrid.util.openSchemeURI(url, params)
+    // var url = null
+    // var params = {'failUrl': data.value, 'package': ''}
+    cloudbae.hybridBridge.device.openUrlInBrowser(data.value)
     .then(function(result) {
       console.log(result.stepCount)
       var jsonData = JSON.stringify(result)
