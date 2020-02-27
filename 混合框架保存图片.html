@@ -22,11 +22,20 @@
 <br>
 <button type="button" id="getHealthData">获取健康数据</button>
 <br>
+<h3>URL地址</h3>
+<input type="text" name="urlPath" id="urlPath" value="https://www.baidu.com">
+<br>
+<button type="button" id="openURL">在外部浏览器打开</button>
+<br>
+<h3>iOS Universal Link</h3>
+<br>
 <a href="https://ul.cloudbae.cn/ann" target="_blank" rel="nofollow">爱南宁</a>
 <br>
 <a href="https://ul.cloudbae.cn/ayl" target="_blank" rel="nofollow">爱玉林</a>
 <br>
 <a href="https://ul.cloudbae.cn/agx" target="_blank" rel="nofollow">爱广西</a>
+<br>
+<h3>Deep Link</h3>
 <br>
 <a href="https://ul.cloudbae.cn/android_ann" target="_blank" rel="nofollow">爱南宁Android</a>
 <br>
@@ -69,6 +78,22 @@
     })
   }
   
+  var btnOpenURL = document.getElementById('openURL');
+  btnOpenURL.onclick = function () {
+    var data = document.getElementById('urlPath')
+    var url = null
+    var params = {'failUrl': data.value, 'package': ''}
+    YBB.hybrid.util.openSchemeURI(url, params)
+    .then(function(result) {
+      console.log(result.stepCount)
+      var jsonData = JSON.stringify(result)
+      alert(jsonData)
+    }).catch(function (e) {
+      console.log(e.message)
+      var msg = (e.message.length == 0 || e.message == null) ? '抛出异常，异常消息为空' : e.message
+      alert(msg)
+    })
+  }
 </script>
 </body>
 </html>
