@@ -106,15 +106,15 @@
   
   var btnOpenURLLinkFail = document.getElementById('openURLLinkFail');
     btnOpenURLLinkFail.onclick = function () {
-    var window = window.open()
-    window.location = "http://www.cloudbae.cn"
+    var windowRef = window.open()
+    windowRef.location = "http://www.cloudbae.cn"
   }
   
   var btnOpenURLLinkSuccess = document.getElementById('openURLLinkSuccess');
     btnOpenURLLinkSuccess.onclick = function () {
-      var window = window.open()
+      var windowRef = window.open()
       function loc() {
-        window.location = 'http://www.cloudbae.cn'
+        windowRef.location = 'http://www.cloudbae.cn'
       }
       setTimeout(loc(), 800)
     }
