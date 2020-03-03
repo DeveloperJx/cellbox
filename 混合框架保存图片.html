@@ -39,6 +39,11 @@
 <br>
 <a href="https://ul.cloudbae.cn/android_ann" target="_blank" rel="nofollow">爱南宁Android</a>
 <br>
+<br>
+<h3>openlink</h3>
+<button type="button" id="openURLLink">Link</button>
+<br>
+
 <script>
   var btn = document.getElementById('btn');
   btn.onclick = function () {
@@ -94,6 +99,12 @@
       alert(msg)
     })
   }
+  
+  var btnOpenURLLink = document.getElementById('openURLLink');
+    btnOpenURLLink.onclick = function () {
+      var t = window.open()
+      t.location = "https://baidu.com"
+    }
 </script>
 </body>
 </html>
