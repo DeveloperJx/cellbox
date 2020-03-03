@@ -40,10 +40,14 @@
 <a href="https://ul.cloudbae.cn/android_ann" target="_blank" rel="nofollow">爱南宁Android</a>
 <br>
 <br>
-<h3>openlink</h3>
-<button type="button" id="openURLLink">Link</button>
+<h3>这是用window.open()修改location无效的案例</h3>
+<button type="button" id="openURLLinkFail">打开URL</button>
 <br>
-
+<br>
+<h3>这是用window.open()修改location有效的案例</h3>
+<button type="button" id="openURLLinkSuccess">打开URL</button>
+<br>
+  
 <script>
   var btn = document.getElementById('btn');
   btn.onclick = function () {
@@ -100,10 +104,19 @@
     })
   }
   
-  var btnOpenURLLink = document.getElementById('openURLLink');
+  var btnOpenURLLinkFail = document.getElementById('openURLLinkFail');
+    btnOpenURLLinkFail.onclick = function () {
+    var window = window.open()
+    window.location = "https://baidu.com"
+  }
+  
+  var btnOpenURLLinkSuccess = document.getElementById('openURLLinkSuccess');
     btnOpenURLLink.onclick = function () {
-      var t = window.open()
-      t.location = "https://baidu.com"
+      var window = window.open()
+      function loc() {
+        window.location = 'https://baidu.com'
+      }
+      setTimeout(loc(), 800)
     }
 </script>
 </body>
