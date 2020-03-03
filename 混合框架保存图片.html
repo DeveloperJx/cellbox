@@ -43,10 +43,10 @@
 <h3>这是用window.open()修改location无效的案例</h3>
 <button type="button" id="openURLLinkFail">打开URL</button>
 <br>
-<!-- <br>
+<br>
 <h3>这是用window.open()修改location有效的案例</h3>
 <button type="button" id="openURLLinkSuccess">打开URL</button>
-<br> -->
+<br>
   
 <script>
   var btn = document.getElementById('btn');
@@ -107,17 +107,22 @@
   var btnOpenURLLinkFail = document.getElementById('openURLLinkFail');
     btnOpenURLLinkFail.onclick = function () {
     var windowRef = window.open()
-    windowRef.location = "http://www.cloudbae.cn"
+    windowRef.location = "http://www.cloudbae.cn/#" + random()
   }
   
-//   var btnOpenURLLinkSuccess = document.getElementById('openURLLinkSuccess');
-//     btnOpenURLLinkSuccess.onclick = function () {
-//       var windowRef = window.open()
-//       function loc() {
-//         windowRef.location = 'http://www.cloudbae.cn'
-//       }
-//       setTimeout(loc(), 800)
-//     }
+  var btnOpenURLLinkSuccess = document.getElementById('openURLLinkSuccess');
+    btnOpenURLLinkSuccess.onclick = function () {
+      function newWin(url, id) {
+          var a = document.createElement('a');
+          a.setAttribute('href', url);
+          a.setAttribute('target', '_blank');
+          a.setAttribute('id', id);
+          // 防止反复添加
+          if(!document.getElementById(id)) document.body.appendChild(a);
+          a.click();
+      }
+      newWin('https://http://www.cloudbae.cn', 'body')
+    }
 </script>
 </body>
 </html>
