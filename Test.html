@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+                <style>
+                    ul,li{
+                        list-style-type: none;
+                        margin:0;
+                        padding:0
+                    }
+                li{
+                    display: block;
+                    padding:10px 20px;
+                    background:#aaa;
+                    color:#fff;
+                    border-radius: 5px;
+                    margin-top:20px;
+                    text-align: center;
+                }
+                </style>
+                <title>js call native api</title>
+
+                <script>
+                    // 获取到devideId回调
+                    var globalCallback = function(devideId) {
+                        document.getElementById('temp').innerHTML = devideId;
+                    }
+                </script>
+<!--                <script src="172.16.20.78:8000/hybrid-bridge-0.0.1-alpha.2.js" type="text/javascript"></script>-->
+                </script>
+                <script>
+
+                    eruda.init();
+                    document.getElementById('demo').onclick = function() {
+                        alert(1);
+                        YBB.hybrid.debug = true;
+                        YBB.hybrid.device.getLocation().then(b => {
+                                                             console.log(b);
+                                                             });
+                    }
+
+                    </script>
+                <script src="http://zwfw.hlj.gov.cn/jmopen/jssdk/index.js" type="text/javascript"></script>
+                <script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybrid/hybrid-api-4.0.2.js" type="text/javascript"></script>
+                <script src="http://cdn.jsdelivr.net/npm/eruda"></script>
+<!--                <script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.2.0.js">-->
+                <script>
+                    eruda.init();
+                    YBB.hybrid.debug = true
+                    </script>
+                </head>
+
+
+    <body>
+
+        <form>
+          <select id="certType" name="certType">
+            <option >公安</option>
+            <option >人社</option>
+            <option >支付宝</option>
+            <option >三选一</option>
+         </select>
+        </form>
+
+        
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <li type="button" onclick="userEyePatternRecognition()">不动产</li>
+        <br>
+        <br>
+        <br>
+        <li type="button" onclick="userIdentification()" >H5实人</li>
+        <br>
+        <br>
+        <br>
+        <li type="button" onclick="scan()" >H5扫一扫</li>
+
+
+        <script tytype="text/javascript">
+            function userIdentification() {
+              var a = document.getElementById("certType");
+              var certTypes = ["ps","ss","zhima","all"]
+              var certType = certTypes[a.selectedIndex]
+               var params = (certType == "all") ? {} :  {
+                             certType: certType,  // 刷脸方式 取值：字段不传默认为 - 三版, zhima- 芝麻认证, ps - 公安, ss - 社保
+                };
+
+              YBB.hybrid.apiRegister.callHandler('user.identification', (certType == "all") ? {} : {certType: certType}).then(function(result) {
+              // certSuccess: string; '0' 失败， '1' 成功，'2'审核中
+              //console.log(result.certSuccess);
+
+                                                                                                                              alert(result.certSuccess);
+
+              });
+
+
+            }
+
+        function userEyePatternRecognition() {
+
+            var a = document.getElementById("certType");
+            var certTypes = ["ps","ss","zhima","all"]
+            var certType = certTypes[a.selectedIndex]
+            var params = (certType == "all") ? {} :  {
+                certType: certType,  // 刷脸方式 取值：字段不传默认为 - 三版, zhima- 芝麻认证, ps - 公安, ss - 社保
+            };
+            YBB.hybrid.user.eyePatternRecognition(params).then(function(result) {
+                // result = { code: number, key?: any }
+                // code = -1, //  用户主动取消
+                // code = 0,// 认证成功
+                // code = 1, // 认证失败
+                // code = 2, // 审核中
+                // code = 3, // 认证渠道不可用
+
+                                                               alert(result.code);
+
+            });
+
+
+
+
+        }
+        function scan() {
+            var scanType = 'qrCode';
+            YBB.hybrid.util.scan(scanType).then(function(result) {
+                // result = {text: 'text text'}
+                alert(result.text);
+            });
+        }
+
+
+
+
+
+
+
+
+            </script>
+    </body>
+</html>
