@@ -56,6 +56,10 @@
 <h3>这是小明提供的链接</h3>
 <a href="Test.html" target="_blank" rel="nofollow">小明</a>
 <br>
+<br>
+<h3>这是上传图片</h3>
+<button type="button" id="uploadImage">打开URL</button>
+<br>
   
 <script>
   var btn = document.getElementById('btn');
@@ -131,6 +135,22 @@
           a.click();
       }
       newWin('http://www.cloudbae.cn', 'body')
+    }
+  
+  var uploadImage = document.getElementById('uploadImage');
+    uploadImage.onclick = function () {
+      var min = 1;
+      var max = 1;
+      var options = {
+        url: 'https://nnapptest.cloudbae.cn:38081/policyCashServer/policy/api/resources/v1/uploadImage',
+        filename: 'file'
+        // headers?: { [key: string]: string };
+        // params?: { [key: string]: any };
+        // body?: any;
+      }
+      YBB.hybrid.device.uploadImages(min, max, options).then(function(result) {
+        console.log(result);
+      })
     }
 </script>
 </body>
