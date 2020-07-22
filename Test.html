@@ -59,6 +59,7 @@
             <option >公安</option>
             <option >人社</option>
             <option >支付宝</option>
+            <option >CA认证</option>
             <option >三选一</option>
          </select>
         </form>
@@ -87,7 +88,7 @@
         <script tytype="text/javascript">
             function userIdentification() {
               var a = document.getElementById("certType");
-              var certTypes = ["ps","ss","zhima","all"]
+              var certTypes = ["ps","ss","zhima","ca","all"]
               var certType = certTypes[a.selectedIndex]
                var params = (certType == "all") ? {} :  {
                              certType: certType,  // 刷脸方式 取值：字段不传默认为 - 三版, zhima- 芝麻认证, ps - 公安, ss - 社保
@@ -107,7 +108,7 @@
         function userEyePatternRecognition() {
 
             var a = document.getElementById("certType");
-            var certTypes = ["ps","ss","zhima","all"]
+            var certTypes = ["ps","ss","zhima","ca","all"]
             var certType = certTypes[a.selectedIndex]
             var params = (certType == "all") ? {} :  {
                 certType: certType,  // 刷脸方式 取值：字段不传默认为 - 三版, zhima- 芝麻认证, ps - 公安, ss - 社保
@@ -146,3 +147,4 @@
             </script>
     </body>
 </html>
+
