@@ -94,7 +94,7 @@
                              certType: certType,  // 刷脸方式 取值：字段不传默认为 - 三版, zhima- 芝麻认证, ps - 公安, ss - 社保
                 };
 
-              YBB.hybrid.apiRegister.callHandler('user.identification', (certType == "all") ? {} : {certType: certType}).then(function(result) {
+              YBB.hybrid.apiRegister.callHandler('user.identification', (certType == "all") ? {} : {certType: certType,liveAgain:true}).then(function(result) {
               // certSuccess: string; '0' 失败， '1' 成功，'2'审核中
               //console.log(result.certSuccess);
 
