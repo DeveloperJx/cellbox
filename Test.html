@@ -63,6 +63,12 @@
             <option >三选一</option>
          </select>
         </form>
+         <form>
+          <select id="liveAgain" name="liveAgain">
+            <option >如果对应渠道已实人，不在进行活体即刻返回</option>
+            <option >无论对应渠道是否已实人，每次调用都需要活体检测</option>
+         </select>
+        </form>
 
         
 
@@ -88,17 +94,26 @@
         <script tytype="text/javascript">
             function userIdentification() {
               var a = document.getElementById("certType");
+               var live = document.getElementById("liveAgain");
+                var lives = [false, true];
+                
+                var liveAgain = lives[live.selectedIndex];
               var certTypes = ["ps","ss","zhima","ca","all"]
+              var message = {
+                             "0" : "实人认证失败 0",
+                              "1" : "实人认证成功 1",
+                               "2" : "审核中 2",
+                            }
               var certType = certTypes[a.selectedIndex]
                var params = (certType == "all") ? {} :  {
                              certType: certType,  // 刷脸方式 取值：字段不传默认为 - 三版, zhima- 芝麻认证, ps - 公安, ss - 社保
                 };
 
-              YBB.hybrid.apiRegister.callHandler('user.identification', (certType == "all") ? {} : {certType: certType,liveAgain:true}).then(function(result) {
+              YBB.hybrid.apiRegister.callHandler('user.identification', (certType == "all") ? { liveAgain: liveAgain} : {certType: certType,liveAgain:liveAgain}).then(function(result) {
               // certSuccess: string; '0' 失败， '1' 成功，'2'审核中
               //console.log(result.certSuccess);
-
-                                                                                                                              alert(result.certSuccess);
+         
+                  alert(message[result.certSuccess]);
 
               });
 
