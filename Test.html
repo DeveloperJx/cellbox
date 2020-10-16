@@ -89,6 +89,10 @@
         <br>
         <br>
         <li type="button" onclick="scan()" >H5扫一扫</li>
+        <br>
+        <br>
+        <br>
+        <li type="button" onclick="xiaochengx()" >微信小程序</li>
 
 
         <script tytype="text/javascript">
@@ -150,6 +154,16 @@
                 // result = {text: 'text text'}
                 alert(result.text);
             });
+        }
+            
+        function  xiaochengx() {
+        
+            var username = 'gh_b34363d39112';
+            var path = 'pages%findex';
+            var miniProgramType = 'WXMiniProgramTypeRelease';
+             YBB.hybrid.util.openWeiXinMiniProgram(username, miniProgramType, path).then(function() {
+  console.log('打开成功')
+});
         }
 
 
