@@ -5,10 +5,20 @@
 <h1>跳转支付宝小程序</h1>
 
 <input type="button" value="爱南宁支付宝小程序" onclick="newDoc()">
+<br>
+ <br>
+  <br>
+  <br>
+  
+  <input type="button" value="JS交互" onclick="jsToAPP()">
 
 <script>
 function newDoc() {
   window.location.assign("alipays://platformapi/startapp?appId=2018071260580683")
+}
+  function jsToAPP() {
+  var params = {'url': 'Call APP method "CallApp()"'};
+window.webkit.messageHandlers.CallApp.postMessage(params);
 }
 </script>
 
