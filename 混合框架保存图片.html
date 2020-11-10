@@ -134,7 +134,7 @@
     var data = document.getElementById('urlPath')
     // var url = null
     // var params = {'failUrl': data.value, 'package': ''}
-    cloudbae.hybrid.util.openSchemeURI(data.value)
+    YBB.hybrid.util.openSchemeURI(data.value)
     .then(function(result) {
       var jsonData = JSON.stringify(result)
       alert(jsonData)
