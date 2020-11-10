@@ -134,7 +134,7 @@
     var data = document.getElementById('urlPath')
     // var url = null
     // var params = {'failUrl': data.value, 'package': ''}
-    YBB.hybrid.util.openSchemeURI({'failUrl': data.value})
+    YBB.hybrid.util.openSchemeURI('no url', {'failUrl': data.value})
     .then(function(result) {
       var jsonData = JSON.stringify(result)
       alert(jsonData)
