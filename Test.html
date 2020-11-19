@@ -132,24 +132,25 @@
 
         function userEyePatternRecognition() {
 
-            var a = document.getElementById("certType");
-            var certTypes = ["ps","ss","zhima","ca","all"]
-            var certType = certTypes[a.selectedIndex]
-            var params = (certType == "all") ? {} :  {
-                certType: certType,  // 刷脸方式 取值：字段不传默认为 - 三版, zhima- 芝麻认证, ps - 公安, ss - 社保
-            };
-            YBB.hybrid.user.eyePatternRecognition(params).then(function(result) {
-                // result = { code: number, key?: any }
-                // code = -1, //  用户主动取消
-                // code = 0,// 认证成功
-                // code = 1, // 认证失败
-                // code = 2, // 审核中
-                // code = 3, // 认证渠道不可用
+//             var a = document.getElementById("certType");
+//             var certTypes = ["ps","ss","zhima","ca","all"]
+//             var certType = certTypes[a.selectedIndex]
+//             var params = (certType == "all") ? {} :  {
+//                 certType: certType,  // 刷脸方式 取值：字段不传默认为 - 三版, zhima- 芝麻认证, ps - 公安, ss - 社保
+//             };
+//             YBB.hybrid.user.eyePatternRecognition(params).then(function(result) {
+//                 // result = { code: number, key?: any }
+//                 // code = -1, //  用户主动取消
+//                 // code = 0,// 认证成功
+//                 // code = 1, // 认证失败
+//                 // code = 2, // 审核中
+//                 // code = 3, // 认证渠道不可用
 
-                                                               alert(result.code);
+//                                                                alert(result.code);
 
-            });
+//             });
 
+            addButton();
 
 
 
@@ -171,6 +172,29 @@
   console.log('打开成功')
 });
         }
+         function addButton() {
+             var isShow = true;
+             var options = {
+             text: '分享'
+             }
+             YBB.hybrid.navigation.setRightBtn(isShow, options).click(function() {
+  
+                var args = {
+    title: '标题', // 标题
+    content: '分享内容', // 分享内容
+    imageUrl: 'http://test.user.com/a.jpg', // 分享图片地址
+    targetUrl: 'http://test.user.com/target', // 分享跳转的目标地址
+    description: '122', // 运营文案
+    type: 'webpage' // 分享类型 'image' | 'text' | 'imageAndText' | 'webpage' | 'music'
+};
+YBB.hybrid.util.oldShare(args).then(function() {
+    console.log('分享成功！');
+}).catch(function(error) {
+    console.log(error);
+    console.log('分享失败！');
+})
+});
+ }
            
 
 
