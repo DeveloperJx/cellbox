@@ -174,7 +174,7 @@
         }
          function addButton() {
 
-             var args = {
+             var params = {
     title: '标题', // 标题
     content: '分享内容', // 分享内容
     imageUrl: 'http://test.user.com/a.jpg', // 分享图片地址
@@ -182,12 +182,7 @@
     description: '123', // 运营文案
     type: 'webpage' // 分享类型 'image' | 'text' | 'imageAndText' | 'webpage' | 'music'
 };
-             YBB.hybrid.util.oldShare(args).then(function() {
-    console.log('分享成功！');
-}).catch(function(error) {
-    console.log(error);
-    console.log('分享失败！');
-})
+             YBB.hybrid.apiRegister.callHandler('biz.util.insuranceShare', params);
      }
            
 
