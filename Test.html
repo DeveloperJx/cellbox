@@ -156,10 +156,13 @@
 
         }
         function scan() {
-            var scanType = 'qrCode';
-            YBB.hybrid.util.scan(scanType).then(function(result) {
+            var params = {
+    cancelButton: '取消',
+    otherButtons: ['拍照', '相册']
+};
+            YBB.hybrid.device.chooseImg(params).then(function(info) {
                 // result = {text: 'text text'}
-                alert(result.text);
+                alert(info.picPath)
             });
         }
             
