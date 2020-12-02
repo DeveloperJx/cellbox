@@ -42,7 +42,8 @@
 
                     </script>
                 <script src="http://zwfw.hlj.gov.cn/jmopen/jssdk/index.js" type="text/javascript"></script>
-                <script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybrid/hybrid-api-4.0.2.js" type="text/javascript"></script>
+<!--                 <script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybrid/hybrid-api-4.0.2.js" type="text/javascript"></script> -->
+    <script src="https://file.cloudbae.cn:39400/api/v1/file/hybrid/hybrid-bridge-2.0.0-alpha.8.js" type="text/javascript"></script>
                 <script src="http://cdn.jsdelivr.net/npm/eruda"></script>
 <!--                <script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.2.0.js">-->
                 <script>
@@ -156,14 +157,24 @@
 
         }
         function scan() {
+//             var params = {
+//     cancelButton: '取消',
+//     otherButtons: ['拍照', '相册']
+// };
+//             YBB.hybrid.device.chooseImg(params).then(function(info) {
+//                 // result = {text: 'text text'}
+//                 alert(info.picPath)
+//             });
             var params = {
-    cancelButton: '取消',
-    otherButtons: ['拍照', '相册']
+  max: 10,
+  sourceType: ['拍照', '相册']
 };
-            YBB.hybrid.device.chooseImg(params).then(function(info) {
-                // result = {text: 'text text'}
-                alert(info.picPath)
-            });
+            cloudbae.hybridBridge.device.chooseImage(params).then(function(imgList) {
+  // imgList = [{
+  //   fileName: string,
+  //   fileUrl: string
+  // }]
+})
         }
             
         function  xiaochengx() {
