@@ -165,15 +165,22 @@
 //                 // result = {text: 'text text'}
 //                 alert(info.picPath)
 //             });
-            var params = {
-  max: 10,
-  sourceType: ['拍照', '相册']
-};
-            cloudbae.hybridBridge.device.chooseImage(params).then(function(imgList) {
-  // imgList = [{
-  //   fileName: string,
-  //   fileUrl: string
-  // }]
+//             var params = {
+//   max: 10,
+//   sourceType: ['拍照', '相册']
+// };
+//             cloudbae.hybridBridge.device.chooseImage(params).then(function(imgList) {
+//   // imgList = [{
+//   //   fileName: string,
+//   //   fileUrl: string
+//   // }]
+// })
+            var clientID = 'Zh59574uwZW7f6Rp5CTh';
+cloudbae.hybridBridge.user.authorization(clientID).then(function(result) {
+  // result = {
+  //   state: string,
+  //   code: string
+  // }
 })
         }
             
