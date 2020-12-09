@@ -132,8 +132,8 @@
             }
 
         function userEyePatternRecognition() {
-
-//             var a = document.getElementById("certType");
+alert(window.screen.width);
+//             var a = document.getElemwindow.screen.widthentById("certType");
 //             var certTypes = ["ps","ss","zhima","ca","all"]
 //             var certType = certTypes[a.selectedIndex]
 //             var params = (certType == "all") ? {} :  {
@@ -157,14 +157,15 @@
 
         }
         function scan() {
-            var params = {
-    cancelButton: '取消',
-    otherButtons: ['拍照', '相册']
-};
-            cloudbae.hybridBridge.device.chooseImg(params).then(function(info) {
-                // result = {text: 'text text'}
-                alert(info.picPath)
-            });
+            alert(window.screen.availWidth);
+//             var params = {
+//     cancelButton: '取消',
+//     otherButtons: ['拍照', '相册']
+// };
+//             cloudbae.hybridBridge.device.chooseImg(params).then(function(info) {
+//                 // result = {text: 'text text'}
+//                 alert(info.picPath)
+//             });
 //             var params = {
 //   max: 10,
 //   sourceType: ['拍照', '相册']
