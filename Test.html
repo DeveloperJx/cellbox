@@ -183,6 +183,20 @@ alert(window.screen.width);
 //   //   code: string
 //   // }
 // })
+ var min = 1;
+var max = 10;
+var options = {
+  url: 'http://www.example.com/upload-api',
+  method: 'post';
+  // headers?: { [key: string]: string };
+  // params?: { [key: string]: any };
+  // body?: any;
+}
+cloudbae.hybridBridge.device.uploadImages(min, max, options).then(function(result) {
+  console.log(result);
+})
+
+            
         }
             
         function  xiaochengx() {
