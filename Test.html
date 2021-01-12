@@ -105,6 +105,7 @@
         <script tytype="text/javascript">
             function userIdentification() {
               
+                
             }
 
         function userEyePatternRecognition() {
@@ -121,6 +122,21 @@
          function addButton() {
 
              alert(1);
+             var parmas = {
+                  certType: 'ca',  
+    certName: '陆明',   
+    mobile: '15778138596',     
+    certNo: '450122199001170510' 
+             };
+             cloudbae.hybridBridge.user.eyePatternRecognition(parmas).then(function (result) {
+            // result = { code: number, key?: any }
+            // code = -1, //  用户主动取消
+            // code = 0,// 认证成功
+            // code = 1, // 认证失败
+            // code = 2, // 审核中
+            // code = 3, // 认证渠道不可用
+            console.log(result);
+   });
             
      }
            
