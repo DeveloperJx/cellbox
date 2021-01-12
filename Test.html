@@ -104,109 +104,19 @@
 
         <script tytype="text/javascript">
             function userIdentification() {
-              var a = document.getElementById("certType");
-               var live = document.getElementById("liveAgain");
-                var lives = [false, true];
-                
-                var liveAgain = lives[live.selectedIndex];
-              var certTypes = ["ps","ss","zhima","ca","all"]
-              var message = {
-                             "0" : "实人认证失败 0",
-                              "1" : "实人认证成功 1",
-                               "2" : "审核中 2",
-                            }
-              var certType = certTypes[a.selectedIndex]
-               var params = (certType == "all") ? {} :  {
-                             certType: certType,  // 刷脸方式 取值：字段不传默认为 - 三版, zhima- 芝麻认证, ps - 公安, ss - 社保
-                };
-
-              YBB.hybrid.apiRegister.callHandler('user.identification', (certType == "all") ? { liveAgain: liveAgain} : {certType: certType,liveAgain:liveAgain}).then(function(result) {
-              // certSuccess: string; '0' 失败， '1' 成功，'2'审核中
-              //console.log(result.certSuccess);
-         
-                  alert(message[result.certSuccess]);
-
-              });
-
-
+              
             }
 
         function userEyePatternRecognition() {
-alert(window.screen.width);
-//             var a = document.getElemwindow.screen.widthentById("certType");
-//             var certTypes = ["ps","ss","zhima","ca","all"]
-//             var certType = certTypes[a.selectedIndex]
-//             var params = (certType == "all") ? {} :  {
-//                 certType: certType,  // 刷脸方式 取值：字段不传默认为 - 三版, zhima- 芝麻认证, ps - 公安, ss - 社保
-//             };
-//             YBB.hybrid.user.eyePatternRecognition(params).then(function(result) {
-//                 // result = { code: number, key?: any }
-//                 // code = -1, //  用户主动取消
-//                 // code = 0,// 认证成功
-//                 // code = 1, // 认证失败
-//                 // code = 2, // 审核中
-//                 // code = 3, // 认证渠道不可用
-
-//                                                                alert(result.code);
-
-//             });
-
-            
-
 
 
         }
         function scan() {
-            alert(window.screen.availWidth);
-//             var params = {
-//     cancelButton: '取消',
-//     otherButtons: ['拍照', '相册']
-// };
-//             cloudbae.hybridBridge.device.chooseImg(params).then(function(info) {
-//                 // result = {text: 'text text'}
-//                 alert(info.picPath)
-//             });
-//             var params = {
-//   max: 10,
-//   sourceType: ['拍照', '相册']
-// };
-//             cloudbae.hybridBridge.device.chooseImage(params).then(function(imgList) {
-//   // imgList = [{
-//   //   fileName: string,
-//   //   fileUrl: string
-//   // }]
-// })
-//             var clientID = 'Zh59574uwZW7f6Rp5CTh';
-// cloudbae.hybridBridge.user.authorization(clientID).then(function(result) {
-//   // result = {
-//   //   state: string,
-//   //   code: string
-//   // }
-// })
- var min = 1;
-var max = 10;
-var options = {
-  url: 'http://www.example.com/upload-api',
-  method: 'post';
-  // headers?: { [key: string]: string };
-  // params?: { [key: string]: any };
-  // body?: any;
-}
-cloudbae.hybridBridge.device.uploadImages(min, max, options).then(function(result) {
-  console.log(result);
-})
-
-            
+           
         }
             
         function  xiaochengx() {
-        
-            var username = 'gh_b34363d39112';
-            var path = 'pages/index';
-            var miniProgramType = 'WXMiniProgramTypeRelease';
-             YBB.hybrid.util.openWeiXinMiniProgram(username, miniProgramType,path).then(function() {
-  console.log('打开成功')
-});
+       
         }
          function addButton() {
 
