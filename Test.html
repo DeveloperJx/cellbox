@@ -124,9 +124,9 @@
              alert(1);
              var parmas = {
                   certType: 'ca',  
-    certName: '陆明',   
-    mobile: '15778138596',     
-    certNo: '450122199001170510' 
+                certName: '陆明',   
+                mobile: '',     
+                certNo: '450122199001170510' 
              };
              cloudbae.hybridBridge.user.eyePatternRecognition(parmas).then(function (result) {
             // result = { code: number, key?: any }
@@ -135,7 +135,7 @@
             // code = 1, // 认证失败
             // code = 2, // 审核中
             // code = 3, // 认证渠道不可用
-            console.log(result);
+              alert(result.code);
    });
             
      }
