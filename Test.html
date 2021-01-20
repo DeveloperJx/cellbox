@@ -1,154 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
-                <style>
-                    ul,li{
-                        list-style-type: none;
-                        margin:0;
-                        padding:0
-                    }
-                li{
-                    display: block;
-                    padding:10px 20px;
-                    background:#aaa;
-                    color:#fff;
-                    border-radius: 5px;
-                    margin-top:20px;
-                    text-align: center;
-                }
-                </style>
-                <title>js call native api</title>
+<html>
+<body>
+<script src="https://file.cloudbae.cn:39400/api/v1/file/hybrid/hybrid-bridge-2.0.0-alpha.8.js" type="text/javascript"></script>
+<form>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  <select id="certType" name="certType">
+    <option >公安</option>
+    <option >人社</option>
+    <option >支付宝</option>
+    <option >CA认证</option>
+    <option >apetime认证</option>
+    <option >三选一</option>
+ </select>
+  <br>
+  <br>
+  <br>
+</form>
+<!--<form action="/demo/demo_form.asp">-->
+<br>
+<br>
+<br>
+ 姓名:<br>
+<input id="username" type="text" name="姓名" value="">
+<br>
+<br>
+<br>
+<br>
+身份证:<br>
+<input id="idcardNo" type="text" name="身份证" value="">
+<br><br>
+<br>
+<br>
+<br>
+<input type="submit" value="Submit" onclick="userEyePatternRecognition()">
+</form>
 
-                <script>
-                    // 获取到devideId回调
-                    var globalCallback = function(devideId) {
-                        document.getElementById('temp').innerHTML = devideId;
-                    }
-                </script>
-<!--                <script src="172.16.20.78:8000/hybrid-bridge-0.0.1-alpha.2.js" type="text/javascript"></script>-->
-                </script>
-                <script>
+<!--<p>如果您点击提交，表单数据会被发送到名为 demo_form.asp 的页面。</p>-->
+<script tytype="text/javascript">
+    function userEyePatternRecognition() {
+var a = document.getElementById("certType");
+var certTypes = ["ps","ss","zhima","ca","apetime","all"]
+var certType = certTypes[a.selectedIndex]
+var username = document.getElementById("username");
+var idcardNo = document.getElementById("idcardNo");
 
-                    eruda.init();
-                    document.getElementById('demo').onclick = function() {
-                        alert(1);
-                        YBB.hybrid.debug = true;
-                        YBB.hybrid.device.getLocation().then(b => {
-                                                             console.log(b);
-                                                             });
-                    }
-
-                    </script>
-                <script src="http://zwfw.hlj.gov.cn/jmopen/jssdk/index.js" type="text/javascript"></script>
-<!--                 <script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybrid/hybrid-api-4.0.2.js" type="text/javascript"></script> -->
-    <script src="https://file.cloudbae.cn:39400/api/v1/file/hybrid/hybrid-bridge-2.0.0-alpha.8.js" type="text/javascript"></script>
-                <script src="http://cdn.jsdelivr.net/npm/eruda"></script>
-<!--                <script src="https://nnapp.cloudbae.cn:38080/storage/api/v1/file/hybridapi/hybridapi-2.2.0.js">-->
-                <script>
-                    eruda.init();
-                    YBB.hybrid.debug = true
-                    </script>
-                </head>
-
-
-    <body>
-
-        <form>
-          <select id="certType" name="certType">
-            <option >公安</option>
-            <option >人社</option>
-            <option >支付宝</option>
-            <option >CA认证</option>
-            <option >三选一</option>
-         </select>
-        </form>
-         <form>
-          <select id="liveAgain" name="liveAgain">
-            <option >对应渠道已实人，即刻返回</option>
-            <option >强制每次都进行活体检测</option>
-         </select>
-        </form>
-
-        
-
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <li type="button" onclick="addButton()">不动产</li>
-        <br>
-        <br>
-        <br>
-        <li type="button" onclick="userIdentification()" >H5实人</li>
-        <br>
-        <br>
-        <br>
-        <li type="button" onclick="scan()" >H5扫一扫</li>
-        <br>
-        <br>
-        <br>
-        <li type="button" onclick="xiaochengx()" >微信小程序</li>
-         <br>
-        <br>
-        <br>
-        <li type="button" onclick="shared()" >分享</li>
-        <br>
-        <br>
-        <br>
-
-        <script tytype="text/javascript">
-            function userIdentification() {
-              
-                
-            }
-
-        function userEyePatternRecognition() {
-
-
-        }
-        function scan() {
-           
-        }
-            
-        function  xiaochengx() {
-       
-        }
-         function addButton() {
-
-             alert(1);
-             var parmas = {
-                  certType: 'ca',  
-                certName: '杨捷',   
-                mobile: '',     
-                certNo: '452701199005300012' 
-             };
-             cloudbae.hybridBridge.user.eyePatternRecognition(parmas).then(function (result) {
-            // result = { code: number, key?: any }
-            // code = -1, //  用户主动取消
-            // code = 0,// 认证成功
-            // code = 1, // 认证失败
-            // code = 2, // 审核中
-            // code = 3, // 认证渠道不可用
-              alert(result.code);
-   });
-            
-     }
-           
-
-
-
-
-
-
-
-
-            </script>
-    </body>
+ var params = (certType == "all") ? {
+     certName:username,
+     certNo:idcardNo,
+     mobile:'15778138596'
+ } :  {
+               certType: certType,  // 刷脸方式 取值：字段不传默认为 - 三版, zhima- 芝麻认证, ps - 公安, ss - 社保
+               certName:username,
+               certNo:idcardNo,
+               mobile:'15778138596'
+  };
+ 
+       cloudbae.hybridBridge.user.eyePatternRecognition(params).then(function (result) {
+                  // result = { code: number, key?: any }-->
+                  // code = -1, //  用户主动取消-->
+                  // code = 0,// 认证成功-->
+                  // code = 1, // 认证失败-->
+                  // code = 2, // 审核中-->
+                  // code = 3, // 认证渠道不可用-->
+                  var string = "认证成功"
+                  switch (result.code) {
+                      case -1:
+                      string =  result.code + "用户主动取消"
+                      break;
+                      case 0:
+                      string = result.code + "认证成功"
+                      break;
+                      case 1:
+                      string = result.code + "认证失败"
+                      break;
+                      case 2:
+                      string = result.code + "审核中"
+                      break;
+                      case 3:
+                      string = result.code + "认证渠道不可用"
+                      break;
+                  }
+                    alert(result.code);
+        });
+    }
+</script>
+</body>
 </html>
-
