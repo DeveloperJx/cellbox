@@ -45,8 +45,8 @@
 var a = document.getElementById("certType");
 var certTypes = ["ps","ss","zhima","ca","apetime","all"]
 var certType = certTypes[a.selectedIndex]
-var username = document.getElementById("username");
-var idcardNo = document.getElementById("idcardNo");
+var username = document.getElementById("username").value;
+var idcardNo = document.getElementById("idcardNo").value;
 
  var params = (certType == "all") ? {
      certName:username,
