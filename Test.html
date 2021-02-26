@@ -36,7 +36,7 @@
 <br>
 <br>
 <br>
-<input type="submit" value="Submit" onclick="login()">
+<input type="submit" value="Submit" onclick="auth()">
 </form>
 
 <!--<p>如果您点击提交，表单数据会被发送到名为 demo_form.asp 的页面。</p>-->
@@ -97,6 +97,11 @@ var idcardNo = document.getElementById("idcardNo").value;
                    alert(1);
                }
                
+            });
+        }
+     function auth() {
+            cloudbae.hybridapi.user.authorization('VZ2KrU2jZHK3DnvkuSWF').then(function(result){
+                
             });
         }
 </script>
