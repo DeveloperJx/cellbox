@@ -106,9 +106,9 @@ var idcardNo = document.getElementById("idcardNo").value;
         }
     function loginMessage() {
         alert(1);
-       cloudbae.hybridBridge.apiRegister.loginMessage('user.loginMessage').then(function(result){
-           alert(result.data);
-       });
+      cloudbae.hybridBridge.apiRegister.callHandler('user.loginMessage').then(function(result) {
+  console.log(result);
+});
     }
 </script>
 </body>
