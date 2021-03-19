@@ -104,7 +104,8 @@ var idcardNo = document.getElementById("idcardNo").value;
                 
             });
         }
-      function loginMessage() {
+    function loginMessage() {
+        alert(1);
        cloudbae.hybridBridge.apiRegister.loginMessage('user.loginMessage').then(function(result){
            alert(result.data);
        });
