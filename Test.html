@@ -37,6 +37,17 @@
 <br>
 <br>
 <input type="submit" value="Submit" onclick="loginMessage()">
+    <br>
+<br>
+<br>
+ <input type="button" value="获取用户信息" onclick="loginMessage()">
+    <br>
+<br>
+<br>
+    <input type="button" value="优惠券活动" onclick="youhuijuan()">
+      <br>
+<br>
+<br>
 </form>
 
 <!--<p>如果您点击提交，表单数据会被发送到名为 demo_form.asp 的页面。</p>-->
@@ -110,6 +121,14 @@ var idcardNo = document.getElementById("idcardNo").value;
           alert(result.data);
   console.log(result);
 });
+    }
+    function youhuijuan() {
+        alert(1);
+         cloudbae.hybridBridge.apiRegister.callHandler('util.dynamic.prob').then(function(result) {
+          alert(result);
+          console.log(result);
+        });
+        
     }
 </script>
 </body>
