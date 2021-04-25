@@ -68,6 +68,13 @@
       <br>
 <br>
 <br>
+ <br>
+    <br>
+    <br>
+     <input type="button" value="登录" onclick="login()">
+      <br>
+<br>
+<br>
 </form>
 
 <!--<p>如果您点击提交，表单数据会被发送到名为 demo_form.asp 的页面。</p>-->
@@ -119,9 +126,16 @@ var idcardNo = document.getElementById("idcardNo").value;
         });
     }
     function login() {
+             var username = document.getElementById("username").value;
+       
             var params = {
                // returnUrl: 'https://www.baidu.com',
             }
+             if (username) {
+              params = {
+                returnUrl : username,
+              }
+        }
             cloudbae.hybridBridge.user.login(params).then(function(){
                
                if(result.isLogin) {
