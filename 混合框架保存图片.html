@@ -75,6 +75,10 @@
 <h3>这是上传图片</h3>
 <button type="button" id="uploadImage">上传图片</button>
 <br>
+<br>
+<h3>获取系统时间</h3>
+<button type="button" id="getTime">获取时间</button>
+<br>
   
   
 <script>
@@ -184,6 +188,25 @@
         console.log(result);
       })
     }
+  
+  var btnGetTime = document.getElementById('getTime');
+    btnGetTime.onclick = function () {
+      var u = navigator.userAgent;
+      var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+      var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+      if(isAndroid){
+           console.log('是安卓');
+       }
+       if(isiOS){
+           console.log('是ios');
+           var openDate = new Date('2021-06-10 09:00:00');
+           var curDate = new Date();
+
+           var isOpenBook = curDate > openDate;
+         
+           alert("current:" + curDate + "\n" + "open:" + curDate + "\n" + "isOpenBook:" + isOpenBook);
+       }
+  }
 </script>
 </body>
 </html>
