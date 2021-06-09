@@ -199,8 +199,8 @@
       // }
       // if(isiOS){
            console.log('是ios');
-           var openDate = new Date('2021-06-10 09:00:00');
-           var curDate = new Date('');
+           var openDate = new Date('2021-06-10 09:00:00'.replace(/-/g, "/"));
+           var curDate = new Date(null);
 
            var isOpenBook = curDate > openDate;
          
