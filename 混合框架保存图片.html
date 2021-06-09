@@ -194,10 +194,16 @@
       var u = navigator.userAgent;
       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-      // if(isAndroid){
-      //     console.log('是安卓');
-      // }
-      // if(isiOS){
+       if(isAndroid){
+           console.log('是安卓');
+           var openDate = new Date('2021-06-10 09:00:00');
+           var curDate = new Date();
+
+           var isOpenBook = curDate > openDate;
+         
+           alert("current:" + curDate + "\n" + "open:" + openDate + "\n" + "isOpenBook:" + isOpenBook);
+       }
+       if(isiOS){
            console.log('是ios');
            var openDate = new Date('2021-06-10 09:00:00'.replace(/-/g, "/"));
            var curDate = new Date();
@@ -205,7 +211,7 @@
            var isOpenBook = curDate > openDate;
          
            alert("current:" + curDate + "\n" + "open:" + openDate + "\n" + "isOpenBook:" + isOpenBook);
-      // }
+       }
   }
 </script>
 </body>
