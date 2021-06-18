@@ -79,6 +79,11 @@
 <h3>获取系统时间</h3>
 <button type="button" id="getTime">获取时间</button>
 <br>
+<br>
+<h3>截图警告开关</h3>
+<button type="button" id="turnOnScreenCaptureAlert">打开截图警告</button>
+<button type="button" id="turnOffScreenCaptureAlert">关闭截图警告</button>
+<br>
   
   
 <script>
@@ -212,6 +217,20 @@
          
            alert("current:" + curDate + "\n" + "open:" + openDate + "\n" + "isOpenBook:" + isOpenBook);
        }
+  }
+  
+  var btnTurnOnScreenCaptureAlert = document.getElementById('turnOnScreenCaptureAlert');
+    btnTurnOnScreenCaptureAlert.onclick = function () {
+      cloudbae.hybridBridge.apiRegister.callHandler('device.setTakeScreenshotAlert', {isEnable: 'true'}).then(function(result) {
+      console.log(result);
+      });
+  }
+  
+   var btnTurnOffScreenCaptureAlert = document.getElementById('turnOffScreenCaptureAlert');
+    btnTurnOffScreenCaptureAlert.onclick = function () {
+      cloudbae.hybridBridge.apiRegister.callHandler('device.setTakeScreenshotAlert', {isEnable: 'false'}).then(function(result) {
+      console.log(result);
+      });
   }
 </script>
 </body>
