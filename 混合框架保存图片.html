@@ -84,6 +84,10 @@
 <button type="button" id="turnOnScreenCaptureAlert">打开截图警告</button>
 <button type="button" id="turnOffScreenCaptureAlert">关闭截图警告</button>
 <br>
+<br>
+<h3>多图上传</h3>
+<button type="button" id="imagesUpload">选择图片</button>
+<br>
   
   
 <script>
@@ -229,6 +233,13 @@
    var btnTurnOffScreenCaptureAlert = document.getElementById('turnOffScreenCaptureAlert');
     btnTurnOffScreenCaptureAlert.onclick = function () {
       cloudbae.hybridBridge.apiRegister.callHandler('device.setTakeScreenshotAlert', {isEnable: 'false'}).then(function(result) {
+      console.log(result);
+      });
+  }
+  
+  var btnimagesUpload = document.getElementById('imagesUpload');
+    btnTurnOffScreenCaptureAlert.onclick = function () {
+      cloudbae.hybridBridge.apiRegister.callHandler('device.chooseImage', {max: '3', soucreType: {'相册'}).then(function(result) {
       console.log(result);
       });
   }
