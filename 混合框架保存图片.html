@@ -239,7 +239,7 @@
   
   var btnimagesUpload = document.getElementById('imagesUpload');
     btnTurnOffScreenCaptureAlert.onclick = function () {
-      cloudbae.hybridBridge.apiRegister.callHandler('device.chooseImage', {max: '3', soucreType: {'相册'}).then(function(result) {
+      cloudbae.hybridBridge.apiRegister.callHandler('device.chooseImage', {max: '3', soucreType: {'相册'}}).then(function(result) {
       console.log(result);
       });
   }
