@@ -239,10 +239,15 @@
   
   var btnimagesUpload = document.getElementById('imagesUpload');
     btnTurnOffScreenCaptureAlert.onclick = function () {
-      var options = {
-        soucreType: ['相册']
-      }
-      cloudbae.hybridBridge.device.chooseImage(3, options).then(function(result) {
+      var params = {
+        max: 3,
+        sourceType: ['拍照', '相册']
+      };
+      hybridBridge.device.chooseImage(params).then(function(imgList) {
+        // imgList = [{
+        //   fileName: string,
+        //   fileUrl: string
+        // }]
         console.log(result);
       });
   }
