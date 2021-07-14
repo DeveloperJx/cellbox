@@ -240,7 +240,7 @@
   var btnimagesUpload = document.getElementById('imagesUpload');
     btnTurnOffScreenCaptureAlert.onclick = function () {
       var options = {
-        soucreType: {'相册'}
+        soucreType: ['相册']
       }
       YBB.hybrid.device.chooseImage(3, options).then(function(result) {
         console.log(result);
