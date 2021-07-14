@@ -243,12 +243,13 @@
         max: 3,
         sourceType: ['拍照', '相册']
       };
+      console.log('call success');
       hybridBridge.device.chooseImage(params).then(function(imgList) {
         // imgList = [{
         //   fileName: string,
         //   fileUrl: string
         // }]
-        console.log(result);
+        console.log(imgList);
       });
   }
 </script>
