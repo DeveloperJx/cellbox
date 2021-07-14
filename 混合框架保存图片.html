@@ -249,8 +249,10 @@
         //   fileName: string,
         //   fileUrl: string
         // }]
-        var jsonData = JSON.stringify(imgList)
-        console.log(jsonData);
+        for (obj in imgList) {
+          var jsonData = JSON.stringify(obj)
+          console.log(jsonData);
+        }
       });
   }
 </script>
