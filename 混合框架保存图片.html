@@ -88,6 +88,10 @@
 <h3>多图上传</h3>
 <button type="button" id="imagesUpload">选择图片</button>
 <br>
+<br>
+<h3>单图上传</h3>
+<button type="button" id="imageUpload">选择图片</button>
+<br>
   
   
 <script>
@@ -241,6 +245,25 @@
     btnimagesUpload.onclick = function () {
       var params = {
         max: 3,
+        sourceType: ['拍照', '相册']
+      };
+      console.log('call success');
+      cloudbae.hybridBridge.device.chooseImage(params).then(function(imgList) {
+        // imgList = [{
+        //   fileName: string,
+        //   fileUrl: string
+        // }]
+        for (const obj of imgList) {
+          console.log(obj.fileName);
+          console.log(obj.fileUrl);
+        }
+      });
+  }
+
+  var btnimageUpload = document.getElementById('imageUpload');
+    btnimageUpload.onclick = function () {
+      var params = {
+        max: 1,
         sourceType: ['拍照', '相册']
       };
       console.log('call success');
