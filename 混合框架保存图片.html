@@ -262,21 +262,10 @@
 
   var btnimageUpload = document.getElementById('imageUpload');
     btnimageUpload.onclick = function () {
-      var params = {
-        max: 1,
-        sourceType: ['拍照', '相册']
-      };
-      console.log('call success');
-      cloudbae.hybridBridge.device.chooseImage(params).then(function(imgList) {
-        // imgList = [{
-        //   fileName: string,
-        //   fileUrl: string
-        // }]
-        for (const obj of imgList) {
-          console.log(obj.fileName);
-          console.log(obj.fileUrl);
-        }
+      cloudbae.hybridBridge.apiRegister.callHandler('showNativeCamera', nil).then(function(result) {
+        console.log(result);
       });
+      
   }
 </script>
 </body>
