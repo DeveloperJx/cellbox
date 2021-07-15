@@ -262,10 +262,9 @@
 
   var btnimageUpload = document.getElementById('imageUpload');
     btnimageUpload.onclick = function () {
-      cloudbae.hybridBridge.apiRegister.callHandler('showNativeCamera', nil).then(function(result) {
+      cloudbae.hybridBridge.apiRegister.callHandler('device.notification.selectImg', {}).then(function(result) {
         console.log(result);
       });
-      
   }
 </script>
 </body>
