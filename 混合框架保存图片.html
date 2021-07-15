@@ -262,7 +262,7 @@
 
   var btnimageUpload = document.getElementById('imageUpload');
     btnimageUpload.onclick = function () {
-      cloudbae.hybridBridge.apiRegister.callHandler('device.notification.selectImg', {}).then(function(result) {
+      cloudbae.hybridBridge.apiRegister.callHandler('device.notification.selectImg', {cancelButton: 'cancel', otherButtons: ['相册', '拍照']}).then(function(result) {
         console.log(result);
       });
   }
