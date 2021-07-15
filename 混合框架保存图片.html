@@ -262,8 +262,16 @@
 
   var btnimageUpload = document.getElementById('imageUpload');
     btnimageUpload.onclick = function () {
-      cloudbae.hybridBridge.apiRegister.callHandler('device.notification.selectImg', {cancelButton: 'cancel', otherButtons: ['相册', '拍照']}).then(function(result) {
-        console.log(result);
+      
+      var params = {
+        cancelButton: '取消',
+        otherButtons: ['拍照', '相册']
+      };
+
+      hybridBridge.device.chooseImg(params).then(function(info) {
+        // info = {result: boolean, picPath: string}
+        // info.picPath 为网络地址
+        console.log(info.picPath);
       });
   }
 </script>
