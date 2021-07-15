@@ -268,7 +268,7 @@
         otherButtons: ['拍照', '相册']
       };
 
-      hybridBridge.device.chooseImg(params).then(function(info) {
+      cloudbae.hybridBridge.device.chooseImg(params).then(function(info) {
         // info = {result: boolean, picPath: string}
         // info.picPath 为网络地址
         console.log(info.picPath);
