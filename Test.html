@@ -187,9 +187,15 @@ var idcardNo = document.getElementById("idcardNo").value;
     }
     function scan() {
     
-        cloudbae.hybridBridge.device.scan('qrCode').then(function(result) {
-            alert(result.text);
-        console.log(result.text);
+     var username = 'gh_b34363d39112';
+var miniProgramType = 'WXMiniProgramTypeRelease';
+var path = 'pages/Findex';
+cloudbae.hybridBridge.util.openWeiXinMiniProgram(username, miniProgramType, path).then(function() {
+  console.log('打开成功')
+})
+//         cloudbae.hybridBridge.device.scan('qrCode').then(function(result) {
+//             alert(result.text);
+//         console.log(result.text);
 })
     }
 </script>
