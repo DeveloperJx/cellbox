@@ -178,7 +178,8 @@ var idcardNo = document.getElementById("idcardNo").value;
         
     }
     function openWX() {
-    window.location.href = "weixin://dl/business/?t=xnmnXy3vKBj";
+//     window.location.href = "weixin://dl/business/?t=xnmnXy3vKBj";
+     cloudbae.hybridBridge.device.openUrlInBrowser('com.icbc.iphoneclient://?startType=QRCODEINJECT');
         
     }
     function openANN() {
