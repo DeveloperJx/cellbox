@@ -186,17 +186,18 @@ var idcardNo = document.getElementById("idcardNo").value;
         
     }
     function scan() {
-     window.location.href = "com.icbc.iphoneclient://?startType=QRCODEINJECT";
-//      var url = '签约url';
-// cloudbae.hybridBridge.util.openSchemeURI(url, {
-// //     paySign: 'wx', // 或者 'alipay'
-//     // universalLink: 'xxxx' 微信 iOS SDK 需要的参数
-//        package:'cmb'
-// }).then(function(result) {
-//     if (result.signStatus) {
-//       console.log('签约成功');
-//     }
-// });
+//      window.location.href = "com.icbc.iphoneclient://?startType=QRCODEINJECT";
+     var url = 'com.icbc.iphoneclient://?startType=QRCODEINJECT';
+cloudbae.hybridBridge.util.openSchemeURI(url, {
+//     paySign: 'wx', // 或者 'alipay'
+    // universalLink: 'xxxx' 微信 iOS SDK 需要的参数
+       package:'icbc',
+        failUrl: 'com.icbc.iphoneclient://?startType=QRCODEINJECT',
+}).then(function(result) {
+    if (result.signStatus) {
+      console.log('签约成功');
+    }
+});
 //      var username = 'gh_b34363d39112';
 // var miniProgramType = 'WXMiniProgramTypeRelease';
 // var path = 'pages/index';
