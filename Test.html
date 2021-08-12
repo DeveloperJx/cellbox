@@ -192,8 +192,8 @@ var idcardNo = document.getElementById("idcardNo").value;
 cloudbae.hybridBridge.util.openSchemeURI(url, {
 //     paySign: 'wx', // 或者 'alipay'
     // universalLink: 'xxxx' 微信 iOS SDK 需要的参数
-       package:'icbc',
-        failUrl: 'com.icbc.iphoneclient://?startType=QRCODEINJECT',
+       package:'com.icbc.iphoneclient',
+        failUrl: 'https://www.baidu.com',
 }).then(function(result) {
     if (result.signStatus) {
       console.log('签约成功');
