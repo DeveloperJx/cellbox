@@ -65,7 +65,8 @@
             var params = {
                 'age':'abc',
             };
-            window.webkit.messageHandlers.CallApp.postMessage(params);
+            
+            window.webkit.messageHandlers.CallApp.postMessage(JSON.stringify(params));
         }
     
     
