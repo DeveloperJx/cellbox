@@ -62,7 +62,9 @@
     
         function webViewCallNative(){
             
-            var params = {name:"abc"};
+            var params = {
+                'age':'abc',
+            };
             window.webkit.messageHandlers.CallApp.postMessage(params);
         }
     
