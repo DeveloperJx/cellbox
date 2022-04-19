@@ -171,11 +171,11 @@
   }
   
   var btnOpenLink = document.getElementById('openLink');
-  btnOpenURLScheme.onclick = function () {
+  btnOpenLink.onclick = function () {
     var data = document.getElementById('urlPath')
     // var url = null
     // var params = {'failUrl': data.value, 'package': ''}
-    cloudbae.hybridBridge.util.openLink(data, null)
+    YBB.hybrid.util.openLink(data, null)
     .then(function(result) {
       var jsonData = JSON.stringify(result)
       alert(jsonData)
