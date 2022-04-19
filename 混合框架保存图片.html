@@ -36,6 +36,8 @@
 <br>
 <button type="button" id="openURLScheme">Open URL Scheme</button>
 <br>
+  <button type="button" id="openLink">Open Link</button>
+<br>
 <h3>iOS Universal Link</h3>
 <br>
 <a href="https://ul.cloudbae.cn/ann" target="_blank" rel="nofollow">爱南宁</a>
@@ -158,6 +160,22 @@
     // var url = null
     // var params = {'failUrl': data.value, 'package': ''}
     YBB.hybrid.util.openSchemeURI('no url', {failUrl: data.value})
+    .then(function(result) {
+      var jsonData = JSON.stringify(result)
+      alert(jsonData)
+    }).catch(function (e) {
+      console.log(e.message)
+      var msg = (e.message.length == 0 || e.message == null) ? '抛出异常，异常消息为空' : e.message
+      alert(msg)
+    })
+  }
+  
+  var btnOpenLink = document.getElementById('openLink');
+  btnOpenURLScheme.onclick = function () {
+    var data = document.getElementById('urlPath')
+    // var url = null
+    // var params = {'failUrl': data.value, 'package': ''}
+    YBB.hybrid.util.openLink(data, null);
     .then(function(result) {
       var jsonData = JSON.stringify(result)
       alert(jsonData)
