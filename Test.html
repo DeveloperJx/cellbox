@@ -159,10 +159,13 @@ var idcardNo = document.getElementById("idcardNo").value;
         }
     function loginMessage() {
         alert(1);
-      cloudbae.hybridBridge.apiRegister.callHandler('user.loginMessage').then(function(result) {
-          alert(result.data);
-  console.log(result);
-});
+//       cloudbae.hybridBridge.apiRegister.callHandler('user.loginMessage').then(function(result) {
+//           alert(result.data);
+//   console.log(result);
+// });
+      cloudbae.hybridBridge.apiRegister.callHandler('device.setBrightness',{brightness: 1.0}).then(function(reslut){
+         console.log(reslut)
+    });
     }
     function youhuijuan() {
 //         alert(1);
