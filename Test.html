@@ -24,6 +24,7 @@
 
     <script type="text/javascript">
         function buttonClick() {
+            alert(1);
             var brightness = document.getElementById("brightness").value;
 
             cloudbae.hybridBridge.apiRegister.callHandler('device.setBrightness',{brightness: brightness}).then(function(reslut){
