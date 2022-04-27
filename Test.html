@@ -26,7 +26,7 @@
   <br>
 </form>
 <!--<form action="/demo/demo_form.asp">-->
-<br>
+<!-- <br>
 <br>
 <br>
  姓名:<br>
@@ -34,8 +34,8 @@
 <br>
 <br>
 <br>
-<br>
-身份证:<br>
+<br> -->
+<!-- 身份证:<br>
 <input id="idcardNo" type="text" name="身份证" value="">
 <br><br>
 <br>
@@ -57,8 +57,8 @@
       <br>
 <br>
 <br>
-    <br>
-     <input type="button" value="打开爱广西" onclick="openANN()">
+    <br> -->
+<!--      <input type="button" value="打开爱广西" onclick="openANN()">
       <br>
 <br>
 <br>
@@ -82,10 +82,10 @@
       <br>
 <br>
 <br>
-</form>
+</form> -->
 
 <!--<p>如果您点击提交，表单数据会被发送到名为 demo_form.asp 的页面。</p>-->
-<script tytype="text/javascript">
+<!-- <script tytype="text/javascript">
     function userEyePatternRecognition() {
 var a = document.getElementById("certType");
 var certTypes = ["ps","ss","zhima","ca","apetime","all"]
@@ -179,28 +179,28 @@ var idcardNo = document.getElementById("idcardNo").value;
              
          });
         
-    }
-    function openWX() {
-//     window.location.href = "weixin://dl/business/?t=xnmnXy3vKBj";
-     cloudbae.hybridBridge.device.openUrlInBrowser('com.icbc.iphoneclient://?startType=QRCODEINJECT');
+    } -->
+//     function openWX() {
+// //     window.location.href = "weixin://dl/business/?t=xnmnXy3vKBj";
+//      cloudbae.hybridBridge.device.openUrlInBrowser('com.icbc.iphoneclient://?startType=QRCODEINJECT');
         
-    }
-    function openANN() {
-         window.location.href = "agx://";
+//     }
+//     function openANN() {
+//          window.location.href = "agx://";
         
-    }
-    function scan() {
+//     }
+//     function scan() {
      
-   var params = {
-    cancelButton: '取消',
-    otherButtons: ['拍照', '相册']
-};
+//    var params = {
+//     cancelButton: '取消',
+//     otherButtons: ['拍照', '相册']
+// };
 
-cloudbae.hybridBridge.device.chooseImg(params).then(function(info) {
-    // info = {result: boolean, picPath: string}
-    // info.picPath 为网络地址
-    console.log(info.picPath);
-});
+// cloudbae.hybridBridge.device.chooseImg(params).then(function(info) {
+//     // info = {result: boolean, picPath: string}
+//     // info.picPath 为网络地址
+//     console.log(info.picPath);
+// });
      
      
      
