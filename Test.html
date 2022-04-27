@@ -17,7 +17,7 @@
 </head>
 <body>
     
-    <input id = "brightness" type="number" placeholder="请输入数值 0 ～ 1.0">
+    <input id = "brightness" type="text" placeholder="请输入数值 0 ～ 1.0">
     <br>
     <br>
     <button onclick="buttonClick()">修改屏幕亮度</button>
@@ -27,7 +27,7 @@
             alert(1);
             var brightness = document.getElementById("brightness").value;
 
-            cloudbae.hybridBridge.apiRegister.callHandler('device.setBrightness',{brightness: brightness}).then(function(reslut){
+            cloudbae.hybridBridge.apiRegister.callHandler('device.setBrightness',{brightness: parseFloat(brightness)}).then(function(reslut){
          console.log(reslut)
     });
     }
