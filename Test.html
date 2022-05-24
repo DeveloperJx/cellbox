@@ -9,7 +9,7 @@
     <title>Document</title>
 <!--     <script src="https://file.cloudbae.cn:39400/api/v1/file/hybrid/hybrid-bridge-2.0.0-alpha.8.js" type="text/javascript"></script> -->
 <!--  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/eruda"></script> -->
-    <script type="text/javascript" src="//js.cdn.aliyun.dcloud.net.cn/dev/uni-app/uni.webview.0.1.52.js"></script>
+    <script type="text/javascript" src="https://js.cdn.aliyun.dcloud.net.cn/dev/uni-app/uni.webview.0.1.52.js"></script>
  <script>
 //     eruda.init();
 //     cloudbae.hybridBridge.debug = true;
@@ -27,11 +27,11 @@
         
         function buttonClick() {
             console.log('------------------------');
-//             document.addEventListener('UniAppJSBridgeReady', function() {  
-//     uni.getEnv(function(res) {  
-//         console.log('当前环境：' + JSON.stringify(res));  
-//     });  
-// });
+            document.addEventListener('UniAppJSBridgeReady', function() {  
+    uni.getEnv(function(res) {  
+        console.log('当前环境：' + JSON.stringify(res));  
+    });  
+});
 
 //             alert(1);
 //             var brightness = document.getElementById("brightness").value;
