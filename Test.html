@@ -28,7 +28,12 @@
         function buttonClick() {
             console.log('------------------------');
             document.addEventListener('UniAppJSBridgeReady', function() {  
-                  console.log('-------------2222-----------');
+                 uni.postMessage({  
+        data: {  
+            action: 'postMessage'  
+        }  
+    });  
+//                   console.log('-------------2222-----------');
 //     uni.getEnv(function(res) {  
 //         console.log('当前环境：' + JSON.stringify(res));  
 //     });  
