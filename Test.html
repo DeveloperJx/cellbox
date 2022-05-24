@@ -9,6 +9,7 @@
     <title>Document</title>
     <script src="https://file.cloudbae.cn:39400/api/v1/file/hybrid/hybrid-bridge-2.0.0-alpha.8.js" type="text/javascript"></script>
  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/eruda"></script>
+    <script type="text/javascript" src="//js.cdn.aliyun.dcloud.net.cn/dev/uni-app/uni.webview.0.1.52.js"></script>
  <script>
     eruda.init();
     cloudbae.hybridBridge.debug = true;
@@ -23,13 +24,20 @@
     <button onclick="buttonClick()">修改屏幕亮度</button>
 
     <script type="text/javascript">
+        
         function buttonClick() {
-            alert(1);
-            var brightness = document.getElementById("brightness").value;
+            document.addEventListener('UniAppJSBridgeReady', function() {  
+    uni.getEnv(function(res) {  
+        console.log('当前环境：' + JSON.stringify(res));  
+    });  
+});
 
-            cloudbae.hybridBridge.apiRegister.callHandler('device.setBrightness',{brightness: parseFloat(brightness)}).then(function(reslut){
-         console.log(reslut)
-    });
+//             alert(1);
+//             var brightness = document.getElementById("brightness").value;
+
+//             cloudbae.hybridBridge.apiRegister.callHandler('device.setBrightness',{brightness: parseFloat(brightness)}).then(function(reslut){
+//          console.log(reslut)
+//     });
     }
     </script>
 
