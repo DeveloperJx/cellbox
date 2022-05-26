@@ -10,7 +10,7 @@
         <script>
             // 引入支付宝jssdk
             if (navigator.userAgent.indexOf('AlipayClient') > -1) {
-                document.writeln('<script src="https://appx/web-view.min.js"' + '>' + '<' + '/' + 'script>');
+                document.writeln('<script src="https://file.cloudbae.cn:39400/api/v1/file/hybrid/hybrid-bridge-2.0.0-alpha.12.js"' + '>' + '<' + '/' + 'script>');
             }
         </script>
          <style>
@@ -30,18 +30,17 @@
         </div>
         <!-- built files will be auto injected -->
         <script type="text/javascript">
-            my.onMessage = function(e) {
-                alert(2);
-            }
             function buttonAction() {
-                alert(1);
-                my.postMessage({
-                method: "login",
-                param: {
-                }
-        });
+                // alert(1);
+                // my.postMessage({
+                // method: "login"
+        // });
+        cloudbae.hybridBridge.device.getLocation().then(function(result) {
+              console.log(result);
+          });
            
         }
+        
         </script>
     </body>
 </html>
