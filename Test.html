@@ -35,9 +35,17 @@
                 // my.postMessage({
                 // method: "login"
         // });
-        cloudbae.hybridBridge.device.getLocation().then(function(result) {
-              console.log(result);
-          });
+//         cloudbae.hybridBridge.device.getLocation().then(function(result) {
+//               console.log(result);
+//           });
+                    var clientID = '*********';
+        cloudbae.hybridBridge.user.authorization(clientID).then(function(result) {
+  // result = {
+  //   state: string,
+  //   code: string
+  // }
+     alert(result.state);
+});
            
         }
         
