@@ -31,10 +31,18 @@
         <!-- built files will be auto injected -->
         <script type="text/javascript">
             function buttonAction() {
-                alert(1);
-                my.postMessage({
-                method: "login"
-        });
+//                 alert(1);
+//                 my.postMessage({
+//                 method: "login"
+//         });
+                        var clientID = '*********';
+        cloudbae.hybridBridge.user.authorization(clientID).then(function(result) {
+  // result = {
+  //   state: string,
+  //   code: string
+  // }
+     alert(result.state);
+});
            
         }
         
