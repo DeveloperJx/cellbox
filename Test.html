@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -9,14 +7,6 @@
         <title>
            demo
         </title>
-        <!-- 微信 JS-SDK 如果不需要兼容微信小程序，则无需引用此 JS 文件。 -->
-<script type="text/javascript"src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
-<!-- 支付宝的 JS-SDK 防止 404 需要动态加载，如果不需要兼容支付宝小程序，则无需引用此 JS 文件。 -->
-
-<!-- 百度 JS-SDK 如果不需要兼容百度小程序，则无需引用此 JS 文件。 -->
-<script type="text/javascript"src="https://b.bdstatic.com/searchbox/icms/searchbox/js/swan-1.7.0.js"></script>
-<!-- uni 的 SDK -->
-<script type="text/javascript"src="https://js.cdn.aliyun.dcloud.net.cn/dev/uni-app/uni.webview.1.5.1.js"></script>
         <script>
             // 引入支付宝jssdk
             if (navigator.userAgent.indexOf('AlipayClient') > -1) {
@@ -41,27 +31,10 @@
         <!-- built files will be auto injected -->
         <script type="text/javascript">
             function buttonAction() {
-//                 alert(1);
-                // my.postMessage({
-                // method: "login"
-        // });
-//         cloudbae.hybridBridge.device.getLocation().then(function(result) {
-//               console.log(result);
-//           });
-//                     var clientID = '*********';
-//         cloudbae.hybridBridge.user.authorization(clientID).then(function(result) {
-  // result = {
-  //   state: string,
-  //   code: string
-  // }
-//      alert(result.code);
-// });
-                      uni.postMessage({
-            data: {
-                action: 'message'
-            }
+                alert(1);
+                my.postMessage({
+                method: "login"
         });
-
            
         }
         
